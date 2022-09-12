@@ -27,4 +27,3 @@ fi
 unset rc
 
 alias vi=nvim
-

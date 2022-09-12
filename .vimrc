@@ -1,6 +1,5 @@
 " Plugins will be downloaded under the specified directory.
 call plug#begin(has('nvim') ? stdpath('data') . '/plugged' : '~/.vim/plugged')
-
 " general
 Plug 'tpope/vim-sensible'
 Plug 'junegunn/seoul256.vim'
@@ -17,7 +16,6 @@ Plug 'alvan/vim-closetag'
 Plug 'tpope/vim-surround'   " surround strings with quotes and parens
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}  " multiple cursors
 Plug 'dense-analysis/ale'   " linting
-
 call plug#end()
 
 
