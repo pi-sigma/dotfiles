@@ -1,0 +1,9 @@
+# Apps
+alias vi=nvim
+
+# Navigation
+alias lsa="ls -a"
+alias lla="ls -la"
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."

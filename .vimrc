@@ -27,18 +27,17 @@ set number		" show numbers in gutter
 set relativenumber	" numbers are relative to current position
 set scrolloff=999 	" smooth scrolling
 set laststatus=2	" always show status bar
-set hidden		" buffers are hidden (not closed) when abandoned
+set hidden		" allow re-use of the same window by hiding (not closing) buffers
 set ignorecase		" ignore case when searching
 set smartcase		" show the next match while entering a search
 set incsearch
-
+set showcmd
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Colorscheme 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 colorscheme gruvbox
 let g:gruvbox_contrast_dark = 'hard'
-
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Mappings
@@ -75,14 +74,12 @@ noremap <silent> <C-Up> :resize +3<CR>
 noremap <silent> <C-Down> :resize -3<CR>
 
 " Shortcut to edit nvim config
-nnoremap <silent> <leader>nv :e ~/dotfiles/.vimrc<CR>
-
+nnoremap <silent> <leader>nv :e ~/.dotfiles/.vimrc<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Indentline 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
-
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vim-Closetag 
@@ -95,19 +92,17 @@ let g:closetag_shortcut = '>'
 " Add > at current position without closing the current tag, default is ''
 let g:closetag_close_shortcut = '<leader>>'
 
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Ale 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
- let b:ale_linters = ['cc', 'flake8']
- let g:ale_linters_ignore = ['pylint', 'mypy']
- let g:ale_echo_msg_error_str = 'E'
- let g:ale_echo_msg_warning_str = 'W'
- let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-" let g:ale_lint_on_text_changed = 'never' " only lint on save
-" let g:ale_lint_on_insert_leave = 0	 " only lint on save
-" let g:ale_lint_on_enter = 0		 " only lint on save
-
+let b:ale_linters = ['cc', 'pylint']
+let g:ale_linters_ignore = ['mypy', 'flake8']
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let g:ale_lint_on_text_changed = 'never' " only lint on save
+let g:ale_lint_on_insert_leave = 0	 " only lint on save
+let g:ale_lint_on_enter = 0		 " only lint on save
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Templates
