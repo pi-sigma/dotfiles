@@ -5,11 +5,9 @@ ln -sf ~/.dotfiles/.bash_profile ~
 ln -sf ~/.dotfiles/.bashrc ~
 ln -sf ~/.dotfiles/.gitconfig ~
 ln -sf ~/.dotfiles/.gitignore ~
-ln -sf ~/.dotfiles/.vimrc ~/.config/nvim/init.vim
 ln -sf ~/.dotfiles/.pylintrc ~
-
-# Copy folders
-cp -r ~/.dotfiles/.vim_templates ~
+ln -sf ~/.dotfiles/.vim_templates ~
+mkdir ~/.config/nvim; ln -sf ~/.dotfiles/init.vim ~/.config/nvim/init.vim
 
 # Load terminal settings
 cat ~/.dotfiles/gnome-terminal.preferences | dconf load /org/gnome/terminal/

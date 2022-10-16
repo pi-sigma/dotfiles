@@ -1,5 +1,5 @@
 # Apps
-alias vi=nvim
+alias vim=nvim
 
 # Navigation
 alias lsa="ls -a"

@@ -149,6 +149,7 @@ disable=abstract-method,
 	bad-indentation,
        	missing-module-docstring,
 	stop-iteration-return,
+	W0621,  # Redefining name %r from outer scope (line %s)
 
 
 [REPORTS]
@@ -176,7 +177,7 @@ evaluation=10.0 - ((float(5 * error + warning + refactor + convention) / stateme
 [BASIC]
 
 # Good variable names which should always be accepted, separated by a comma
-good-names=main,e,i,j,k,m,n,_,foo,bar,baz
+good-names=main,e,f,i,j,k,m,n,_,foo,bar,baz
 
 # Bad variable names which should always be refused, separated by a comma
 bad-names=
