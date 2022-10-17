@@ -1,5 +1,6 @@
 " Plugins will be installed in ~/.local/share/nvim/plugged
-call plug#begin(stdpath('data') . '/plugged')
+call plug#begin(has('nvim') ? stdpath('data') . '/plugged' : '~/.vim/plugged')
+
 " general
 Plug 'tpope/vim-sensible'
 
@@ -7,7 +8,7 @@ Plug 'tpope/vim-sensible'
 Plug 'morhetz/gruvbox'
 Plug 'Yggdroot/indentLine'
 
-""" editing + navigating
+" editing + navigating
 Plug 'scrooloose/nerdtree'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -16,11 +17,14 @@ Plug 'tpope/vim-commentary'
 Plug 'alvan/vim-closetag'
 Plug 'tpope/vim-surround'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+
+" Analysis + linting
 Plug 'dense-analysis/ale'
+
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Standard settings 
+" General
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 syntax on
 set number
@@ -32,7 +36,6 @@ set hidden		" allow re-use of the same window by hiding (not closing) buffers
 set ignorecase
 set smartcase		" show the next match while entering a search
 set incsearch
-set cc=88
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Colorscheme 
@@ -64,7 +67,7 @@ vnoremap $^ <esc>`>a`<esc>`<i`<esc>
 " Open windows on the bottom & to the right by default
 set splitbelow splitright
 
-" Simplify horizontal split navigation
+" Simplify (horizontal) split navigation
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
@@ -74,16 +77,35 @@ noremap <silent> <C-Left> :vertical resize -3<CR>
 noremap <silent> <C-Up> :resize +3<CR>
 noremap <silent> <C-Down> :resize -3<CR>
 
+" Ctags
+nnoremap <C-q> :execute "vertical ptag " . expand("<cword>")<CR>
+set previewheight=95
+
 " Shortcut to edit nvim config
-nnoremap <silent> <leader>nv :e ~/.dotfiles/init.vim<CR>
+nnoremap <silent> <leader>nv :e ~/.dotfiles/.vimrc<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"" Indentline 
+" Templates
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+autocmd BufNewFile *.html 0r ~/.vim_templates/base.html
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Shiftwidth, tabstop, softtabstop
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+autocmd FileType c set sw=4
+autocmd FileType c set ts=4
+autocmd FileType c set sts=4
+autocmd FileType html set sw=2
+autocmd FileType html set ts=2
+autocmd FileType html set sts=2
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Plugins: Indentline 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"" Vim-Closetag 
+" Plugins: Vim-Closetag 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml'
 let g:closetag_xhtml_filenames = '*.xhtml,*.jsx'
@@ -94,7 +116,7 @@ let g:closetag_shortcut = '>'
 let g:closetag_close_shortcut = '<leader>>'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"" Ale 
+" Plugins: Ale 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let b:ale_linters = ['cc', 'pylint']
 let g:ale_linters_ignore = ['mypy', 'flake8']
@@ -104,15 +126,3 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_lint_on_text_changed = 'never' " only lint on save
 let g:ale_lint_on_insert_leave = 0	 " only lint on save
 let g:ale_lint_on_enter = 0		 " only lint on save
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"" Templates
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-autocmd BufNewFile *.html 0r ~/.vim_templates/base.html
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Shiftwidth, tabstop, softtabstop
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-autocmd FileType html set sw=2
-autocmd FileType html set ts=2
-autocmd FileType html set sts=2

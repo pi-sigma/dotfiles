@@ -3,11 +3,12 @@
 # Create symlinks to dotfiles (replace existing)
 ln -sf ~/.dotfiles/.bash_profile ~
 ln -sf ~/.dotfiles/.bashrc ~
+ln -sf ~/.dotfiles/.ctags ~
 ln -sf ~/.dotfiles/.gitconfig ~
 ln -sf ~/.dotfiles/.gitignore ~
 ln -sf ~/.dotfiles/.pylintrc ~
 ln -sf ~/.dotfiles/.vim_templates ~
-mkdir ~/.config/nvim; ln -sf ~/.dotfiles/init.vim ~/.config/nvim/init.vim
+mkdir ~/.config/nvim; ln -sf ~/.dotfiles/.vimrc ~/.config/nvim/init.vim
 
 # Load terminal settings
 cat ~/.dotfiles/gnome-terminal.preferences | dconf load /org/gnome/terminal/
