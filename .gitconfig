@@ -4,3 +4,4 @@
 	email = mail@paulschilling.de
 [core]
 	excludesfile = /home/pi-sigma/.gitignore
+	editor = nvim
