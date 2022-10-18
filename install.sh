@@ -8,7 +8,8 @@ ln -sf ~/.dotfiles/.gitconfig ~
 ln -sf ~/.dotfiles/.gitignore ~
 ln -sf ~/.dotfiles/.pylintrc ~
 ln -sf ~/.dotfiles/.vim_templates ~
-mkdir ~/.config/nvim; ln -sf ~/.dotfiles/.vimrc ~/.config/nvim/init.vim
+ln -sf ~/.dotfiles/.vimrc ~  # Vim
+mkdir ~/.config/nvim; ln -sf ~/.dotfiles/.vimrc ~/.config/nvim/init.vim  # Neovim
 
 # Load terminal settings
 cat ~/.dotfiles/gnome-terminal.preferences | dconf load /org/gnome/terminal/
