@@ -24,6 +24,11 @@ if has('nvim')
 
     " Analysis + linting
     Plug 'dense-analysis/ale'
+
+		" Language-specific
+		Plug 'vim-scripts/python_match.vim'
+		Plug 'python-rope/rope'
+		Plug 'python-rope/ropevim'
   call plug#end()
 
   " Colorscheme
