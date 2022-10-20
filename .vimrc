@@ -1,62 +1,57 @@
-" Plugins are installed and configured for Neovim
-" Vi/Vim is loaded with general settings + key mappings
+call plug#begin('~/.local/share/nvim/plugged')
+" General
+Plug 'tpope/vim-sensible'
 
-if has('nvim')
-  call plug#begin('~/.local/share/nvim/plugged')
-    " General
-    Plug 'tpope/vim-sensible'
+" Display
+Plug 'morhetz/gruvbox'
+Plug 'Yggdroot/indentLine'
 
-    " Display
-    Plug 'morhetz/gruvbox'
-    Plug 'Yggdroot/indentLine'
+" Editing + navigating
+Plug 'scrooloose/nerdtree'
+Plug 'jiangmiao/auto-pairs'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'tpope/vim-commentary'
+Plug 'alvan/vim-closetag'
+Plug 'tpope/vim-surround'
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+Plug 'machakann/vim-swap'
+Plug 'justinmk/vim-sneak'
 
-    " Editing + navigating
-    Plug 'scrooloose/nerdtree'
-    Plug 'jiangmiao/auto-pairs'
-    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-    Plug 'junegunn/fzf.vim'
-    Plug 'tpope/vim-commentary'
-    Plug 'alvan/vim-closetag'
-    Plug 'tpope/vim-surround'
-    Plug 'mg979/vim-visual-multi', {'branch': 'master'}
-    Plug 'machakann/vim-swap'
-    Plug 'justinmk/vim-sneak'
+" Analysis + linting
+Plug 'dense-analysis/ale'
 
-    " Analysis + linting
-    Plug 'dense-analysis/ale'
+" Language-specific
+Plug 'vim-scripts/python_match.vim'
+Plug 'python-rope/rope'
+Plug 'python-rope/ropevim'
+call plug#end()
 
-		" Language-specific
-		Plug 'vim-scripts/python_match.vim'
-		Plug 'python-rope/rope'
-		Plug 'python-rope/ropevim'
-  call plug#end()
+" Colorscheme
+colorscheme gruvbox
+let g:gruvbox_contrast_dark = 'hard'
 
-  " Colorscheme
-  colorscheme gruvbox
-  let g:gruvbox_contrast_dark = 'hard'
+" Indentline
+let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 
-  " Indentline
-  let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+" Vim-Closetag
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml'
+let g:closetag_xhtml_filenames = '*.xhtml,*.jsx'
+let g:closetag_filetypes = 'html,xhtml,phtml'
+let g:closetag_xhtml_filetypes = 'xhtml,jsx'
+let g:closetag_shortcut = '>'
+" Add > at current position without closing the current tag, default is ''
+let g:closetag_close_shortcut = '<leader>>'
 
-  " Vim-Closetag
-  let g:closetag_filenames = '*.html,*.xhtml,*.phtml'
-  let g:closetag_xhtml_filenames = '*.xhtml,*.jsx'
-  let g:closetag_filetypes = 'html,xhtml,phtml'
-  let g:closetag_xhtml_filetypes = 'xhtml,jsx'
-  let g:closetag_shortcut = '>'
-  " Add > at current position without closing the current tag, default is ''
-  let g:closetag_close_shortcut = '<leader>>'
-
-  " Ale
-  let b:ale_linters = ['cc', 'pylint']
-  let g:ale_linters_ignore = ['mypy', 'flake8']
-  let g:ale_echo_msg_error_str = 'E'
-  let g:ale_echo_msg_warning_str = 'W'
-  let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-  let g:ale_lint_on_text_changed = 'never'
-  let g:ale_lint_on_insert_leave = 0
-  let g:ale_lint_on_enter = 0
-endif
+" Ale
+let b:ale_linters = ['cc', 'pylint']
+let g:ale_linters_ignore = ['mypy', 'flake8']
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_insert_leave = 0
+let g:ale_lint_on_enter = 0
 
 
 """"""""""""""""""""
@@ -66,10 +61,10 @@ syntax on
 set relativenumber
 set signcolumn=number
 set scrolloff=999 	" smooth scrolling
-set laststatus=2	" always show status bar
-set hidden		" allow re-use of the same window by hiding (not closing) buffers
+set laststatus=2		" always show status bar
+set hidden					" allow re-use of the same window by hiding (not closing) buffers
 set ignorecase
-set smartcase		" show the next match while entering a search
+set smartcase				" show the next match while entering a search
 set incsearch
 set noswapfile
 
