@@ -1,0 +1,5 @@
+# Load terminal settings
+dconf load /org/gnome/terminal/ < ~/.dotfiles/etc/dconf-settings.ini
+
+# Key mappings
+dconf write /org/gnome/desktop/input-sources/xkb-options "['caps:swapescape', 'compose:ralt']"

@@ -7,16 +7,16 @@ Plug 'morhetz/gruvbox'
 Plug 'Yggdroot/indentLine'
 
 " Editing + navigating
-Plug 'scrooloose/nerdtree'
 Plug 'jiangmiao/auto-pairs'
+Plug 'alvan/vim-closetag'
+Plug 'tpope/vim-commentary'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'tpope/vim-commentary'
-Plug 'alvan/vim-closetag'
+Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-surround'
-Plug 'mg979/vim-visual-multi', {'branch': 'master'}
-Plug 'machakann/vim-swap'
 Plug 'justinmk/vim-sneak'
+Plug 'machakann/vim-swap'
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 
 " Analysis + linting
 Plug 'dense-analysis/ale'
@@ -27,6 +27,9 @@ Plug 'python-rope/rope'
 Plug 'python-rope/ropevim'
 call plug#end()
 
+"""""""""""""""""
+" Plugin config "
+"""""""""""""""""
 " Colorscheme
 colorscheme gruvbox
 let g:gruvbox_contrast_dark = 'hard'
@@ -60,11 +63,11 @@ let g:ale_lint_on_enter = 0
 syntax on
 set relativenumber
 set signcolumn=number
-set scrolloff=999 	" smooth scrolling
-set laststatus=2		" always show status bar
-set hidden					" allow re-use of the same window by hiding (not closing) buffers
+set scrolloff=999
+set laststatus=2
+set hidden
 set ignorecase
-set smartcase				" show the next match while entering a search
+set smartcase
 set incsearch
 set noswapfile
 
@@ -107,7 +110,7 @@ nnoremap <C-q> :execute "vertical ptag " . expand("<cword>")<CR>
 set previewheight=95
 
 " Shortcut to edit vim/nvim config
-nnoremap <silent> <leader>nv :e ~/.dotfiles/.vimrc<CR>
+nnoremap <silent> <leader>nv :e ~/.dotfiles/dotfiles/.vimrc<CR>
 
 """""""""""""
 " Templates "
@@ -117,9 +120,9 @@ autocmd BufNewFile *.html 0r ~/.vim_templates/base.html
 """"""""""""""""""""""""""""""""""""
 " Shiftwidth, tabstop, softtabstop "
 """"""""""""""""""""""""""""""""""""
-autocmd FileType c set sw=4
-autocmd FileType c set ts=4
-autocmd FileType c set sts=4
+autocmd FileType c,sh set sw=4
+autocmd FileType c,sh set ts=4
+autocmd FileType c,sh set sts=4
 autocmd FileType html,vim set sw=2
 autocmd FileType html,vim set ts=2
 autocmd FileType html,vim set sts=2

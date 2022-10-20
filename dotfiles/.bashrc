@@ -27,7 +27,7 @@ fi
 unset rc
 
 # create aliases, functions, etc.
-for DOTFILE in `find ~/.dotfiles/system`
+for file in `find ~/.dotfiles/bash`
 do
-  [ -f $DOTFILE ] && source $DOTFILE
+  [ -f $file ] && source $file
 done

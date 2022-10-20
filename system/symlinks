@@ -1,0 +1,9 @@
+# Create symlinks to dotfiles (replace existing)
+ln -sf ~/.dotfiles/dotfiles/.bash_profile ~
+ln -sf ~/.dotfiles/dotfiles/.bashrc ~
+ln -sf ~/.dotfiles/dotfiles/.ctags ~
+ln -sf ~/.dotfiles/dotfiles/.gitconfig ~
+ln -sf ~/.dotfiles/dotfiles/.gitignore ~
+ln -sf ~/.dotfiles/dotfiles/.pylintrc ~
+ln -sf ~/.dotfiles/dotfiles/.vim_templates ~
+mkdir -p ~/.config/nvim; ln -sf ~/.dotfiles/dotfiles/.vimrc ~/.config/nvim/init.vim
