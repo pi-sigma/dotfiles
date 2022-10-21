@@ -1,6 +1,5 @@
 # Apps
 alias vim=nvim
-# alias nvim=~/.neovim/bin/nvim
 
 # Navigation
 alias lsa="ls -a"
