@@ -62,6 +62,7 @@ let g:ale_lint_on_enter = 0
 """"""""""""""""""""
 syntax on
 set relativenumber
+set number
 set signcolumn=number
 set scrolloff=999
 set laststatus=2
