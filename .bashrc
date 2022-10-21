@@ -26,6 +26,8 @@ fi
 
 unset rc
 
+source $HOME/.bash_profile
+
 # Source aliases, functions, etc.
 for file in `find ~/.dotfiles/bash`
 do

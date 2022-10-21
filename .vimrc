@@ -111,7 +111,7 @@ nnoremap <C-q> :execute "vertical ptag " . expand("<cword>")<CR>
 set previewheight=95
 
 " Shortcut to edit vim/nvim config
-nnoremap <silent> <leader>nv :e ~/.dotfiles/dotfiles/.vimrc<CR>
+nnoremap <silent> <leader>nv :e ~/.dotfiles/.vimrc<CR>
 
 """""""""""""
 " Templates "
