@@ -20,12 +20,12 @@ Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 
 " Analysis + linting
 Plug 'dense-analysis/ale'
+Plug 'davidhalter/jedi-vim'
 
 " Language-specific
 Plug 'vim-scripts/python_match.vim'
-Plug 'python-rope/rope'
-Plug 'python-rope/ropevim'
 call plug#end()
+
 
 """""""""""""""""
 " Plugin config "
@@ -56,6 +56,10 @@ let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_insert_leave = 0
 let g:ale_lint_on_enter = 0
 
+" Jedi
+let g:jedi#popup_on_dot = 0
+let g:jedi#completions_command = "<C-c>"
+
 
 """"""""""""""""""""
 " General settings "
@@ -71,6 +75,9 @@ set ignorecase
 set smartcase
 set incsearch
 set noswapfile
+set foldmethod=indent
+set foldlevel=99
+
 
 """"""""""""
 " Mappings "
@@ -127,3 +134,13 @@ autocmd FileType c,sh set sts=4
 autocmd FileType html,vim set sw=2
 autocmd FileType html,vim set ts=2
 autocmd FileType html,vim set sts=2
+
+""""""""""""""
+" Statusline "
+""""""""""""""
+set statusline+=%f%=%{&filetype}\ \|
+set statusline+=\ %{&fileencoding?&fileencoding:&encoding}\ \|
+set statusline+=\ %{&fileformat}\ \ 
+set statusline+=\ %p%%\ \ 
+set statusline+=\ %l:%c
+

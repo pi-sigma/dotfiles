@@ -3,7 +3,9 @@
 NVIM=$HOME/.neovim
 
 if command -v $NVIM/bin/nvim &> /dev/null; then
-    echo "NVIM is already installed: skipping"
+	echo "NVIM is already installed (via AppImage): skipping"
+elif command -v nvim &> /dev/null; then
+	echo "NVIM is already installed (from source or via package manager): skipping"
 else
 	# Install
 	mkdir -p $NVIM/bin
