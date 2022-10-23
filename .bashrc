@@ -12,24 +12,19 @@ then
 fi
 export PATH
 
+# PATH update
+PATH=$PATH:"$HOME/.neovim/bin"
+
 # Uncomment the following line if you don't like systemctl's auto-paging feature:
 # export SYSTEMD_PAGER=
 
 # User specific aliases and functions
-if [ -d ~/.bashrc.d ]; then
-	for rc in ~/.bashrc.d/*; do
+if [ -d ~/.dotfiles/bash ]; then
+	for rc in ~/.dotfiles/bash/*; do
 		if [ -f "$rc" ]; then
-			. "$rc"
+			source "$rc"
 		fi
 	done
 fi
 
 unset rc
-
-source $HOME/.bash_profile
-
-# Source aliases, functions, etc.
-for file in `find ~/.dotfiles/bash`
-do
-	[ -f $file ] && source $file
-done

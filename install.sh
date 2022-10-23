@@ -1,22 +1,20 @@
 #!/bin/bash
 
-basedir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-
 # Gnome: terminal settings + key maps
-dconf load /org/gnome/terminal/ < ${basedir}/dconf-settings.ini
+dconf load /org/gnome/terminal/ < $PWD/dconf-settings.ini
 dconf write /org/gnome/desktop/input-sources/xkb-options "['caps:swapescape', 'compose:ralt']"
 
 # Bash
-ln -sf ${basedir}/.bash_profile ~
-ln -sf ${basedir}/.bashrc ~
+ln -s $PWD/.bash_profile ~
+ln -sf $PWD/.bashrc ~
 
 # Git
-ln -sf ${basedir}/.gitconfig ~
-ln -sf ${basedir}/.gitignore ~
+ln -sf $PWD/.gitconfig ~
+ln -sf $PWD/.gitignore ~
 
 # Neovim
-source ${basedir}/nvim/nvim.sh
+source $PWD/nvim/nvim.sh
 
 # Misc.
-ln -sf ${basedir}/.ctags ~
-ln -sf ${basedir}/.pylintrc ~
+ln -sf $PWD/.ctags ~
+ln -sf $PWD/.pylintrc ~

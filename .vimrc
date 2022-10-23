@@ -58,7 +58,9 @@ let g:ale_lint_on_enter = 0
 
 " Jedi
 let g:jedi#popup_on_dot = 0
+let g:jedi#show_call_signatures = 0
 let g:jedi#completions_command = "<C-c>"
+autocmd FileType python setlocal completeopt-=preview
 
 
 """"""""""""""""""""
