@@ -13,6 +13,7 @@ else
 	# Config
 	mkdir -p ~/.config/nvim
 	ln -sf ~/.dotfiles/.vimrc ~/.config/nvim/init.vim
+	ln -sf ~/.dotfiles/config.lua ~/.config/nvim/lua/config.lua
 	ln -sf ~/.dotfiles/.vim_templates ~
 
 	# Enable Plug and install plugins

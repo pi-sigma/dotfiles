@@ -18,9 +18,23 @@ Plug 'justinmk/vim-sneak'
 Plug 'machakann/vim-swap'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 
-" Analysis + linting
-Plug 'dense-analysis/ale'
-Plug 'davidhalter/jedi-vim'
+" LSP Support
+Plug 'neovim/nvim-lspconfig'
+Plug 'williamboman/mason.nvim'
+Plug 'williamboman/mason-lspconfig.nvim'
+Plug 'VonHeikemen/lsp-zero.nvim'
+
+" Autocompletion
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'saadparwaiz1/cmp_luasnip'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-nvim-lua'
+
+" Snippets
+Plug 'L3MON4D3/LuaSnip'
+" Plug 'rafamadriz/friendly-snippets'
 
 " Language-specific
 Plug 'vim-scripts/python_match.vim'
@@ -46,21 +60,11 @@ let g:closetag_shortcut = '>'
 " Add > at current position without closing the current tag, default is ''
 let g:closetag_close_shortcut = '<leader>>'
 
-" Ale
-let b:ale_linters = ['cc', 'pylint']
-let g:ale_linters_ignore = ['mypy', 'flake8']
-let g:ale_echo_msg_error_str = 'E'
-let g:ale_echo_msg_warning_str = 'W'
-let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-let g:ale_lint_on_text_changed = 'never'
-let g:ale_lint_on_insert_leave = 0
-let g:ale_lint_on_enter = 0
-
-" Jedi
-let g:jedi#popup_on_dot = 0
-let g:jedi#show_call_signatures = 0
-let g:jedi#completions_command = "<C-c>"
-autocmd FileType python setlocal completeopt-=preview
+""""""
+" Lua"
+""""""
+lua require('config')
+inoremap <C-x><C-x> <Cmd>lua require('cmp').complete()<CR>
 
 
 """"""""""""""""""""
@@ -130,9 +134,9 @@ autocmd BufNewFile *.html 0r ~/.vim_templates/base.html
 """"""""""""""""""""""""""""""""""""
 " Shiftwidth, tabstop, softtabstop "
 """"""""""""""""""""""""""""""""""""
-autocmd FileType c,sh set sw=4
-autocmd FileType c,sh set ts=4
-autocmd FileType c,sh set sts=4
+autocmd FileType c,lua,sh set sw=4
+autocmd FileType c,lua,sh set ts=4
+autocmd FileType c,lua,sh set sts=4
 autocmd FileType html,vim set sw=2
 autocmd FileType html,vim set ts=2
 autocmd FileType html,vim set sts=2
@@ -140,9 +144,8 @@ autocmd FileType html,vim set sts=2
 """"""""""""""
 " Statusline "
 """"""""""""""
-set statusline+=%f%=%{&filetype}\ \|
+set statusline+=%f\ %m%=%{&filetype}\ \|
 set statusline+=\ %{&fileencoding?&fileencoding:&encoding}\ \|
 set statusline+=\ %{&fileformat}\ \ 
 set statusline+=\ %p%%\ \ 
 set statusline+=\ %l:%c
-
