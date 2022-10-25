@@ -1,0 +1,15 @@
+[init]
+	defaultBranch = main
+[user]
+	email = mail@paulschilling.de
+[core]
+	excludesfile = ~/.gitignore
+	editor = nvim
+[diff]
+    	tool = meld
+[difftool]
+    	prompt = false
+[difftool "meld"]
+    	cmd = meld "$LOCAL" "$REMOTE"
+[alias]
+	dt = difftool -d

@@ -20,6 +20,6 @@ fi
 
 # Config
 mkdir -p ~/.config/nvim/lua
-ln -sf $neovim/vimrc ~/.config/nvim/init.vim
+ln -sf $neovim/.vimrc ~/.config/nvim/init.vim
 ln -sf $neovim/config.lua ~/.config/nvim/lua/config.lua
-ln -sf $neovim/vim_templates ~
+ln -sf $neovim/.vim_templates ~

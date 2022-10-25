@@ -36,8 +36,9 @@ Plug 'hrsh7th/cmp-nvim-lua'
 Plug 'L3MON4D3/LuaSnip'
 " Plug 'rafamadriz/friendly-snippets'
 
-" Language-specific
+" Other
 Plug 'vim-scripts/python_match.vim'
+Plug 'tpope/vim-fugitive'
 call plug#end()
 
 
@@ -60,9 +61,7 @@ let g:closetag_shortcut = '>'
 " Add > at current position without closing the current tag, default is ''
 let g:closetag_close_shortcut = '<leader>>'
 
-""""""
-" Lua"
-""""""
+" Lua/LSP
 lua require('config')
 inoremap <C-x><C-x> <Cmd>lua require('cmp').complete()<CR>
 
@@ -76,14 +75,17 @@ set number
 set signcolumn=number
 set scrolloff=999
 set laststatus=2
-set hidden
+set hidden  " hide buffers (instead of closing)
 set ignorecase
 set smartcase
 set incsearch
 set noswapfile
-set foldmethod=indent
-set foldlevel=99
+set completeopt-=preview  " no scratch buffers on autocomplete
 
+set foldmethod=manual
+set foldnestmax=10
+set nofoldenable
+set foldlevel=2
 
 """"""""""""
 " Mappings "
@@ -109,9 +111,11 @@ vnoremap $^ <esc>`>a`<esc>`<i`<esc>
 " Open windows on the bottom & to the right by default
 set splitbelow splitright
 
-" Simplify (horizontal) split navigation
+" Simplify split navigation
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
 
 " Simplify adjusting split size
 noremap <silent> <C-Right> :vertical resize +3<CR>
@@ -119,9 +123,9 @@ noremap <silent> <C-Left> :vertical resize -3<CR>
 noremap <silent> <C-Up> :resize +3<CR>
 noremap <silent> <C-Down> :resize -3<CR>
 
-" Ctags
-nnoremap <C-q> :execute "vertical ptag " . expand("<cword>")<CR>
-set previewheight=95
+" Convert horizontal and vertical splits
+nmap <leader>th <C-w>t<C-w>H
+nmap <leader>tk <C-w>t<C-w>K
 
 " Shortcut to edit vim/nvim config
 nnoremap <silent> <leader>nv :e ~/.dotfiles/nvim/vimrc<CR>
@@ -144,7 +148,7 @@ autocmd FileType html,vim set sts=2
 """"""""""""""
 " Statusline "
 """"""""""""""
-set statusline+=%f\ %m%=%{&filetype}\ \|
+set statusline+=%f\ \ %{FugitiveStatusline()}\ \ %m%=%{&filetype}\ \|
 set statusline+=\ %{&fileencoding?&fileencoding:&encoding}\ \|
 set statusline+=\ %{&fileformat}\ \ 
 set statusline+=\ %p%%\ \ 
