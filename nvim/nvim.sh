@@ -1,5 +1,7 @@
 #!/bin/bash
 
+neovim="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
 if command -v nvim &> /dev/null; then
 	echo "NVIM is already installed: skipping"
 else
@@ -10,14 +12,14 @@ else
 	chmod +x nvim.appimage
 	mv nvim.appimage nvim
 
-	# Config
-	mkdir -p ~/.config/nvim
-	ln -sf ~/.dotfiles/.vimrc ~/.config/nvim/init.vim
-	ln -sf ~/.dotfiles/config.lua ~/.config/nvim/lua/config.lua
-	ln -sf ~/.dotfiles/.vim_templates ~
-
 	# Enable Plug and install plugins
 	sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
 	       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 	nvim +PlugInstall +q +q
 fi
+
+# Config
+mkdir -p ~/.config/nvim/lua
+ln -sf $neovim/vimrc ~/.config/nvim/init.vim
+ln -sf $neovim/config.lua ~/.config/nvim/lua/config.lua
+ln -sf $neovim/vim_templates ~
