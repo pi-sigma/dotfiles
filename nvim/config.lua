@@ -14,7 +14,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 	}
 )
 -- Diagnostic signs
-local signs = { Error = ">>", Warn = "--", Hint = "--", Info = "--" } 
+local signs = { Error = ">>", Warn = "--", Hint = "--", Info = "--" }
 for type, icon in pairs(signs) do
     local hl = "DiagnosticSign" .. type
     vim.fn.sign_define(hl, { text = icon, texthl= hl, numhl = hl })
@@ -40,6 +40,26 @@ local on_attach = function(client, bufnr)
 	vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
 	vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
 end
+
+
+require('lspconfig')['sumneko_lua'].setup {
+	on_attach = on_attach,
+	flags = {
+		debounce_text_changes = 150
+	},
+	cmp.setup {
+		completion = {
+			autocomplete = false
+		}
+	},
+	settings = {
+		Lua = {
+			diagnostics = {
+				globals = { 'vim', 'opts' }
+			}
+		}
+	}
+}
 
 require('lspconfig')['pylsp'].setup {
 	on_attach = on_attach,
