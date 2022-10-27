@@ -42,7 +42,7 @@ local on_attach = function(client, bufnr)
 end
 
 
-require('lspconfig')['sumneko_lua'].setup {
+require('lspconfig')['clangd'].setup {
 	on_attach = on_attach,
 	flags = {
 		debounce_text_changes = 150
@@ -51,15 +51,9 @@ require('lspconfig')['sumneko_lua'].setup {
 		completion = {
 			autocomplete = false
 		}
-	},
-	settings = {
-		Lua = {
-			diagnostics = {
-				globals = { 'vim', 'opts' }
-			}
-		}
 	}
 }
+
 
 require('lspconfig')['pylsp'].setup {
 	on_attach = on_attach,
@@ -82,6 +76,26 @@ require('lspconfig')['pylsp'].setup {
 				pycodestyle = {enabled = false},
 				pyflakes = {enabled = false},
 				pylint = {enabled = true},
+				mypy = {enabled = false},
+			}
+		}
+	}
+}
+
+require('lspconfig')['sumneko_lua'].setup {
+	on_attach = on_attach,
+	flags = {
+		debounce_text_changes = 150
+	},
+	cmp.setup {
+		completion = {
+			autocomplete = false
+		}
+	},
+	settings = {
+		Lua = {
+			diagnostics = {
+				globals = { 'vim', 'opts' }
 			}
 		}
 	}
