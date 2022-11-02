@@ -81,6 +81,7 @@ set smartcase
 set incsearch
 set noswapfile
 set completeopt-=preview  " no scratch buffers on autocomplete
+" set clipboard+=unnamedplus
 
 set foldmethod=manual
 set foldnestmax=10
@@ -127,8 +128,13 @@ noremap <silent> <C-Down> :resize -3<CR>
 nmap <leader>th <C-w>t<C-w>H
 nmap <leader>tk <C-w>t<C-w>K
 
+" Copy & paste to/from clipboard (https://github.com/vim/vim/issues/5157)
+xnoremap "+y y:call system("wl-copy", @")<cr>
+nnoremap "+p :let @"=substitute(system("wl-paste --no-newline"), '<C-v><C-m>', '', 'g')<cr>p
+nnoremap "*p :let @"=substitute(system("wl-paste --no-newline --primary"), '<C-v><C-m>', '', 'g')<cr>p
+
 " Shortcut to edit vim/nvim config
-nnoremap <silent> <leader>nv :e ~/.dotfiles/nvim/vimrc<CR>
+nnoremap <silent> <leader>nv :e ~/.dotfiles/nvim/.vimrc<CR>
 
 """""""""""""
 " Templates "
