@@ -12,10 +12,9 @@ else
 	chmod +x nvim.appimage
 	mv nvim.appimage nvim
 
-	# Enable Plug and install plugins
+	# Enable Plug
 	sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
 	       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-	nvim +PlugInstall +q +q
 fi
 
 # Config

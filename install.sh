@@ -3,7 +3,7 @@
 basedir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # Gnome: terminal settings + key maps
-dconf load /org/gnome/terminal/ < $basedir/dconf-settings.ini
+dconf load /org/gnome/terminal/legacy/profiles:/ < $basedir/gnome-terminal-settings.dconf
 dconf write /org/gnome/desktop/input-sources/xkb-options "['caps:swapescape', 'compose:ralt']"
 
 # Bash
