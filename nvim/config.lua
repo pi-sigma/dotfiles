@@ -5,6 +5,12 @@ lsp.preset('recommended')
 lsp.setup()
 
 -- Diagnostics
+vim.diagnostic.config({
+  severity_sort = true,
+  float = {
+    source = "always",  -- Or "if_many"
+  },
+})
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 	vim.lsp.diagnostic.on_publish_diagnostics, {
 		signs = true,
@@ -27,11 +33,11 @@ local on_attach = function(client, bufnr)
 
 	local bufopts = { noremap=true, silent=true, buffer=bufnr }
 	vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-	vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+	vim.keymap.set('n', 'ggd', vim.lsp.buf.definition, bufopts)
 	vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
 	vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-	vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
-	vim.keymap.set('n', '<space>K', vim.lsp.buf.signature_help, bufopts)
+	vim.keymap.set('n', 'ggD', vim.lsp.buf.declaration, bufopts)
+	-- vim.keymap.set('n', '<space>K', vim.lsp.buf.signature_help, bufopts)
 	-- vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition, bufopts)
 	vim.keymap.set('n', '<F2>', vim.lsp.buf.rename, bufopts)
 	-- vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
@@ -40,7 +46,6 @@ local on_attach = function(client, bufnr)
 	vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
 	vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
 end
-
 
 require('lspconfig')['clangd'].setup {
 	on_attach = on_attach,
@@ -53,7 +58,6 @@ require('lspconfig')['clangd'].setup {
 		}
 	}
 }
-
 
 require('lspconfig')['pylsp'].setup {
 	on_attach = on_attach,
@@ -69,13 +73,13 @@ require('lspconfig')['pylsp'].setup {
 		pylsp = {
 			plugins = {
 				flake8 = {
-					enabled = false,
+					enabled = true,
 					ignore = {},
-					maxLineLength = 86
+					maxLineLength = 88
 				},
 				pycodestyle = {enabled = false},
 				pyflakes = {enabled = false},
-				pylint = {enabled = true},
+				pylint = {enabled = false},
 				mypy = {enabled = false},
 			}
 		}

@@ -4,9 +4,14 @@ __pycache__
 # Editor files
 .idea
 
+
 # Environments
 .env
 venv/
+
+# Config files
+mypy.ini
+setup.cfg
 
 # Other
 /tags

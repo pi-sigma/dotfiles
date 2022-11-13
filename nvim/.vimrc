@@ -65,7 +65,6 @@ let g:closetag_close_shortcut = '<leader>>'
 lua require('config')
 inoremap <C-x><C-x> <Cmd>lua require('cmp').complete()<CR>
 
-
 """"""""""""""""""""
 " General settings "
 """"""""""""""""""""
@@ -81,8 +80,6 @@ set smartcase
 set incsearch
 set noswapfile
 set completeopt-=preview  " no scratch buffers on autocomplete
-" set clipboard+=unnamedplus
-
 set foldmethod=manual
 set foldnestmax=10
 set nofoldenable
@@ -94,12 +91,15 @@ set foldlevel=2
 nmap Q <Nop>
 vnoremap <C-c> "+y
 
-" Leader
+" Buffer
 nnoremap <Leader>b :buffers<CR>:buffer<Space>
-map <leader>q :bp<bar>sp<bar>bn<bar>bd<CR>
+nnoremap <Leader>v :buffers<CR>:vert sbuffer<Space>
 
 " fuzzy find
 nmap <A-f> :FZF<CR>
+
+" :nohlsearch
+nnoremap <silent> <Esc><Esc> :let @/ = ""<CR>
 
 " Parentheses, brackets, braces; double quotes, single quotes, ticks
 vnoremap $! <esc>`>a)<esc>`<i(<esc>
@@ -125,8 +125,8 @@ noremap <silent> <C-Up> :resize +3<CR>
 noremap <silent> <C-Down> :resize -3<CR>
 
 " Convert horizontal and vertical splits
-nmap <leader>th <C-w>t<C-w>H
-nmap <leader>tk <C-w>t<C-w>K
+nmap <leader>tk <C-w>t<C-w>H
+nmap <leader>th <C-w>t<C-w>K
 
 " Copy & paste to/from clipboard (https://github.com/vim/vim/issues/5157)
 xnoremap "+y y:call system("wl-copy", @")<cr>
