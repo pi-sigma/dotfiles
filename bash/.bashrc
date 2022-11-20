@@ -19,8 +19,8 @@ PATH=$PATH:"$HOME/.neovim/bin"
 # export SYSTEMD_PAGER=
 
 # User specific aliases and functions
-if [ -d ~/.dotfiles/bash ]; then
-	for rc in ~/.dotfiles/bash/*; do
+if [ -d ~/.dotfiles/bash/config ]; then
+	for rc in ~/.dotfiles/bash/config/*; do
 		if [ -f "$rc" ]; then
 			source "$rc"
 		fi
@@ -28,3 +28,6 @@ if [ -d ~/.dotfiles/bash ]; then
 fi
 
 unset rc
+
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

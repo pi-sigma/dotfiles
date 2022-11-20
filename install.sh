@@ -2,13 +2,13 @@
 
 basedir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-# Gnome: terminal settings + key maps
+# Gnome settings
 dconf load /org/gnome/terminal/legacy/profiles:/ < $basedir/gnome-terminal-settings.dconf
 dconf write /org/gnome/desktop/input-sources/xkb-options "['caps:swapescape', 'compose:ralt']"
+dconf write /org/gnome/desktop/sound/event-sounds "false"
 
 # Bash
-ln -sf $basedir/.bash_profile ~
-ln -sf $basedir/.bashrc ~
+source $basedir/bash/bash.sh
 
 # Git
 source $basedir/git/git.sh

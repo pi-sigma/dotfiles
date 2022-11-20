@@ -48,6 +48,8 @@ call plug#end()
 " Colorscheme
 colorscheme gruvbox
 let g:gruvbox_contrast_dark = 'hard'
+hi DiagnosticError ctermfg=9
+hi DiagnosticWarn ctermfg=11
 
 " Indentline
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
@@ -101,16 +103,11 @@ nmap <A-f> :FZF<CR>
 " :nohlsearch
 nnoremap <silent> <Esc><Esc> :let @/ = ""<CR>
 
-" Parentheses, brackets, braces; double quotes, single quotes, ticks
-vnoremap $! <esc>`>a)<esc>`<i(<esc>
-vnoremap $@ <esc>`>a]<esc>`<i[<esc>
-vnoremap $# <esc>`>a}<esc>`<i{<esc>
-vnoremap $$ <esc>`>a"<esc>`<i"<esc>
-vnoremap $% <esc>`>a'<esc>`<i'<esc>
-vnoremap $^ <esc>`>a`<esc>`<i`<esc>
-
 " Open windows on the bottom & to the right by default
 set splitbelow splitright
+
+" Split terminal
+nnoremap <leader>tv :sp<bar>term<cr><c-w>J:resize10<cr>
 
 " Simplify split navigation
 nnoremap <C-h> <C-w>h
@@ -119,10 +116,10 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 
 " Simplify adjusting split size
-noremap <silent> <C-Right> :vertical resize +3<CR>
-noremap <silent> <C-Left> :vertical resize -3<CR>
-noremap <silent> <C-Up> :resize +3<CR>
-noremap <silent> <C-Down> :resize -3<CR>
+noremap <silent> <A-Right> :vertical resize +3<CR>
+noremap <silent> <A-Left> :vertical resize -3<CR>
+noremap <silent> <A-Up> :resize -3<CR>
+noremap <silent> <A-Down> :resize +3<CR>
 
 " Convert horizontal and vertical splits
 nmap <leader>tk <C-w>t<C-w>H
