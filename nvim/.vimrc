@@ -106,9 +106,6 @@ nnoremap <silent> <Esc><Esc> :let @/ = ""<CR>
 " Open windows on the bottom & to the right by default
 set splitbelow splitright
 
-" Split terminal
-nnoremap <leader>tv :sp<bar>term<cr><c-w>J:resize10<cr>
-
 " Simplify split navigation
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
@@ -124,6 +121,11 @@ noremap <silent> <A-Down> :resize +3<CR>
 " Convert horizontal and vertical splits
 nmap <leader>tk <C-w>t<C-w>H
 nmap <leader>th <C-w>t<C-w>K
+
+" Split terminal (horizontal, vertical, bottom)
+noremap <leader>terh :split<cr>:term<cr>
+noremap <leader>terv :vsplit<cr>:term<cr>
+nnoremap <leader>terb :sp<bar>term<cr><c-w>J:resize10<cr>
 
 " Copy & paste to/from clipboard (https://github.com/vim/vim/issues/5157)
 xnoremap "+y y:call system("wl-copy", @")<cr>
