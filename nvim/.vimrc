@@ -38,6 +38,7 @@ Plug 'L3MON4D3/LuaSnip'
 
 " Other
 Plug 'vim-scripts/python_match.vim'
+Plug 'vim-python/python-syntax'
 Plug 'tpope/vim-fugitive'
 call plug#end()
 
@@ -62,6 +63,13 @@ let g:closetag_xhtml_filetypes = 'xhtml,jsx'
 let g:closetag_shortcut = '>'
 " Add > at current position without closing the current tag, default is ''
 let g:closetag_close_shortcut = '<leader>>'
+
+" Python syntax
+" let g:python_highlight_builtins = 1
+let g:python_highlight_func_calls = 1
+let g:python_highlight_class_vars = 1
+" let g:python_highlight_operators = 1
+highlight Function ctermfg=108
 
 " Lua/LSP
 lua require('config')
