@@ -2,6 +2,8 @@ call plug#begin('~/.local/share/nvim/plugged')
 " General
 Plug 'tpope/vim-sensible'
 
+Plug 'jesseleite/vim-agriculture'
+
 " Display
 Plug 'morhetz/gruvbox'
 Plug 'Yggdroot/indentLine'
@@ -40,6 +42,8 @@ Plug 'L3MON4D3/LuaSnip'
 Plug 'vim-scripts/python_match.vim'
 Plug 'vim-python/python-syntax'
 Plug 'tpope/vim-fugitive'
+Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh' }
+Plug 'jesseleite/vim-agriculture'
 call plug#end()
 
 
@@ -65,7 +69,7 @@ let g:closetag_shortcut = '>'
 let g:closetag_close_shortcut = '<leader>>'
 
 " Python syntax
-" let g:python_highlight_builtins = 1
+let g:python_highlight_builtins = 1
 let g:python_highlight_func_calls = 1
 let g:python_highlight_class_vars = 1
 " let g:python_highlight_operators = 1
@@ -142,6 +146,11 @@ nnoremap "*p :let @"=substitute(system("wl-paste --no-newline --primary"), '<C-v
 
 " Shortcut to edit vim/nvim config
 nnoremap <silent> <leader>nv :e ~/.dotfiles/nvim/.vimrc<CR>
+
+" Silver Searcher shortcuts
+noremap <leader>ag :Ag! <C-r>=expand('<cword>')<CR><CR>
+" exact search
+noremap <leader>AG :AgRaw! -w -Q -s <C-r>=expand('<cword>')<CR><CR>
 
 """""""""""""
 " Templates "
