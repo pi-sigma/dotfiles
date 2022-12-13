@@ -74,7 +74,7 @@ require('lspconfig')['pylsp'].setup {
 			plugins = {
 				flake8 = {
 					enabled = true,
-					ignore = {},
+					ignore = {W292,},
 					maxLineLength = 88
 				},
 				pycodestyle = {enabled = false},
