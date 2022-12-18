@@ -38,11 +38,14 @@ Plug 'hrsh7th/cmp-nvim-lua'
 Plug 'L3MON4D3/LuaSnip'
 " Plug 'rafamadriz/friendly-snippets'
 
+" Testing & debugging
+Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh' }
+Plug 'vim-test/vim-test'
+
 " Other
 Plug 'vim-scripts/python_match.vim'
 Plug 'vim-python/python-syntax'
 Plug 'tpope/vim-fugitive'
-Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh' }
 Plug 'jesseleite/vim-agriculture'
 call plug#end()
 
@@ -74,6 +77,14 @@ let g:python_highlight_func_calls = 1
 let g:python_highlight_class_vars = 1
 " let g:python_highlight_operators = 1
 highlight Function ctermfg=108
+
+" Vim test
+let test#python#runner = 'djangotest'
+nmap <silent> <leader>t :TestNearest<CR>
+nmap <silent> <leader>T :TestFile<CR>
+nmap <silent> <leader>a :TestSuite<CR>
+nmap <silent> <leader>l :TestLast<CR>
+nmap <silent> <leader>g :TestVisit<CR>
 
 " Lua/LSP
 lua require('config')
