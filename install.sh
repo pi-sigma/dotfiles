@@ -18,4 +18,6 @@ source $basedir/nvim/nvim.sh
 
 # Misc.
 ln -sf $basedir/.ctags ~
+ln -sf $basedir/ipython/startup/ ~/.ipython/profile_default/startup
 ln -sf $basedir/.pylintrc ~
+ln -sf $basedir/.tmux.conf ~

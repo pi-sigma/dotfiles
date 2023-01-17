@@ -2,21 +2,20 @@ call plug#begin('~/.local/share/nvim/plugged')
 " General
 Plug 'tpope/vim-sensible'
 
-Plug 'jesseleite/vim-agriculture'
-
 " Display
 Plug 'morhetz/gruvbox'
 Plug 'Yggdroot/indentLine'
 
-" Editing + navigating
+" Editing/navigating/searching
 Plug 'jiangmiao/auto-pairs'
-Plug 'alvan/vim-closetag'
 Plug 'tpope/vim-commentary'
 Plug 'junegunn/fzf', { 'dir': '~/opt/fzf' }
 Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-Plug 'tpope/vim-surround'
+Plug 'jesseleite/vim-agriculture'
+Plug 'alvan/vim-closetag'
 Plug 'justinmk/vim-sneak'
+Plug 'tpope/vim-surround'
 Plug 'machakann/vim-swap'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 
@@ -42,11 +41,19 @@ Plug 'L3MON4D3/LuaSnip'
 Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh' }
 Plug 'vim-test/vim-test'
 
-" Other
+" Language-specific
 Plug 'vim-scripts/python_match.vim'
 Plug 'vim-python/python-syntax'
+
+" Git
+Plug 'junegunn/gv.vim'
 Plug 'tpope/vim-fugitive'
-Plug 'jesseleite/vim-agriculture'
+Plug 'tpope/vim-rhubarb'
+
+" Other
+Plug 'preservim/vimux'
+
+Plug 'sainnhe/gruvbox-material'
 call plug#end()
 
 
@@ -54,10 +61,10 @@ call plug#end()
 " Plugin config "
 """""""""""""""""
 " Colorscheme
-colorscheme gruvbox
-let g:gruvbox_contrast_dark = 'hard'
-hi DiagnosticError ctermfg=9
-hi DiagnosticWarn ctermfg=11
+colorscheme gruvbox-material
+" let g:gruvbox_contrast_dark = 'hard'
+" hi DiagnosticError ctermfg=9
+" hi DiagnosticWarn ctermfg=11
 
 " Indentline
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
@@ -75,6 +82,7 @@ let g:closetag_close_shortcut = '<leader>>'
 let g:python_highlight_builtins = 1
 let g:python_highlight_func_calls = 1
 let g:python_highlight_class_vars = 1
+let g:python_highlight_builtin_types = 1
 " let g:python_highlight_operators = 1
 highlight Function ctermfg=108
 
@@ -186,3 +194,60 @@ set statusline+=\ %{&fileencoding?&fileencoding:&encoding}\ \|
 set statusline+=\ %{&fileformat}\ \ 
 set statusline+=\ %p%%\ \ 
 set statusline+=\ %l:%c
+
+
+
+
+
+
+
+
+" let g:colors_name="ronakg"
+
+" hi Normal       ctermfg = 252      ctermbg = 235      cterm = none
+" hi LineNr       ctermfg = darkgrey ctermbg = 237
+" hi CursorLineNr ctermfg = red      ctermbg = 236
+" hi CursorLine   ctermbg = 236        cterm = none
+" hi Conditional  ctermfg = 214
+" hi Statement    ctermfg = 214
+" hi Type         ctermfg = darkgreen
+" hi Storageclass ctermfg = 161
+" hi String       ctermfg = darkred
+" hi Number       ctermfg = 161
+" hi cTodo        ctermfg = darkred    cterm = italic ctermbg = yellow
+" hi Boolean      ctermfg = 161
+" hi Debug        ctermfg = yellow     cterm = none
+" hi Identifier   ctermfg = darkblue
+" hi Label        ctermfg = darkblue
+" hi Directory    ctermfg = cyan
+" hi Comment      ctermfg = 245        cterm = italic
+" hi Function     ctermfg = 152
+" hi Operator     ctermfg = grey
+" hi Keyword      ctermfg = darkblue
+" hi Constant     ctermfg = 161
+" hi Macro        ctermfg = darkyellow
+" hi Tag          ctermfg = black
+" hi PreCondit    ctermfg = darkyellow
+" hi Character    ctermfg = 222
+" hi SpecialChar  ctermfg = magenta
+" hi SpecialKey   ctermfg = 239        cterm = none
+" hi PreProc      ctermfg = green
+" hi Delimiter    ctermfg = 241
+" hi Visual       ctermfg = brown    ctermbg = grey
+" hi Search       ctermfg = white    ctermbg = 28
+
+" hi DiffAdd      ctermfg = black    ctermbg = 114
+" hi DiffChange   ctermfg = black    ctermbg = cyan
+" hi DiffText     ctermfg = white    ctermbg = darkred
+" hi DiffDelete   ctermfg = black    ctermbg = 145
+
+" hi Pmenu        ctermfg = red      ctermbg = black
+" hi PmenuSel     ctermfg = black    ctermbg = lightblue
+
+" hi Folded       ctermfg = black
+" hi MatchParen   ctermfg = black    ctermbg = yellow
+" hi VertSplit    ctermfg = grey
+
+" hi StartifyFile ctermfg = red
+" hi Startifypath ctermfg = grey
+" hi ColorColumn  ctermbg = 236

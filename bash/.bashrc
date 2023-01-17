@@ -31,3 +31,7 @@ unset rc
 
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+export EDITOR=/usr/local/bin/nvim;
+
+export PS1="\e[0;33m[\u] \w:\e[0m "

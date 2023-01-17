@@ -104,3 +104,16 @@ require('lspconfig')['sumneko_lua'].setup {
 		}
 	}
 }
+
+require('lspconfig')['tsserver'].setup {
+	on_attach = on_attach,
+	flags = {
+		debounce_text_changes = 150
+	},
+	cmd = { 'typescript-language-server', '--stdio' },
+	cmp.setup {
+		completion = {
+			autocomplete = false
+		}
+	},
+}
