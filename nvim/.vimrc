@@ -44,6 +44,7 @@ Plug 'vim-test/vim-test'
 " Language-specific
 Plug 'vim-scripts/python_match.vim'
 Plug 'vim-python/python-syntax'
+Plug 'maxmellon/vim-jsx-pretty'
 
 " Git
 Plug 'junegunn/gv.vim'
