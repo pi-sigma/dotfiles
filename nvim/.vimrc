@@ -4,6 +4,10 @@ Plug 'tpope/vim-sensible'
 
 " Display
 Plug 'morhetz/gruvbox'
+Plug 'sainnhe/gruvbox-material'
+Plug 'mhartington/oceanic-next'
+Plug 'marko-cerovac/material.nvim'
+" Plug 'kaicataldo/material.vim', { 'branch': 'main' }
 Plug 'Yggdroot/indentLine'
 
 " Editing/navigating/searching
@@ -18,6 +22,8 @@ Plug 'justinmk/vim-sneak'
 Plug 'tpope/vim-surround'
 Plug 'machakann/vim-swap'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 
 " LSP Support
 Plug 'neovim/nvim-lspconfig'
@@ -54,7 +60,6 @@ Plug 'tpope/vim-rhubarb'
 " Other
 Plug 'preservim/vimux'
 
-Plug 'sainnhe/gruvbox-material'
 call plug#end()
 
 
@@ -63,9 +68,10 @@ call plug#end()
 """""""""""""""""
 " Colorscheme
 colorscheme gruvbox-material
-" let g:gruvbox_contrast_dark = 'hard'
-" hi DiagnosticError ctermfg=9
-" hi DiagnosticWarn ctermfg=11
+" colorscheme material
+let g:gruvbox_contrast_dark = 'hard'
+hi DiagnosticError ctermfg=9
+hi DiagnosticWarn ctermfg=11
 
 " Indentline
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
