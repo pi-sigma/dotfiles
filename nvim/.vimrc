@@ -3,8 +3,15 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'tpope/vim-sensible'
 
 " Display
-Plug 'morhetz/gruvbox'
+" Plug 'morhetz/gruvbox'
+Plug 'sainnhe/gruvbox-material'
+" Plug 'sainnhe/everforest'
+" Plug 'arcticicestudio/nord-vim'
+" Plug 'sainnhe/everforest'
+" Plug 'arcticicestudio/nord-vim'
 Plug 'Yggdroot/indentLine'
+
+Plug 'dense-analysis/ale'
 
 " Editing/navigating/searching
 Plug 'jiangmiao/auto-pairs'
@@ -12,12 +19,16 @@ Plug 'tpope/vim-commentary'
 Plug 'junegunn/fzf', { 'dir': '~/opt/fzf' }
 Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-Plug 'jesseleite/vim-agriculture'
+" Plug 'jesseleite/vim-agriculture'
 Plug 'alvan/vim-closetag'
 Plug 'justinmk/vim-sneak'
 Plug 'tpope/vim-surround'
 Plug 'machakann/vim-swap'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+Plug 'yilin-yang/vim-markbar'
+Plug 'gcmt/taboo.vim'
 
 " LSP Support
 Plug 'neovim/nvim-lspconfig'
@@ -53,19 +64,25 @@ Plug 'tpope/vim-rhubarb'
 
 " Other
 Plug 'preservim/vimux'
-
-Plug 'sainnhe/gruvbox-material'
 call plug#end()
 
+let b:ale_linters = ['pylint']
+" let g:ale_linters_ignore = ['mypy']
+" let g:ale_completion_enabled = 1
 
 """""""""""""""""
 " Plugin config "
 """""""""""""""""
 " Colorscheme
+" colorscheme gruvbox
+" let g:gruvbox_contrast_dark = 'hard'
 colorscheme gruvbox-material
 " let g:gruvbox_contrast_dark = 'hard'
-" hi DiagnosticError ctermfg=9
-" hi DiagnosticWarn ctermfg=11
+" colorscheme everforest
+" colorscheme nord
+
+hi DiagnosticError ctermfg=9
+hi DiagnosticWarn ctermfg=11
 
 " Indentline
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
@@ -86,6 +103,8 @@ let g:python_highlight_class_vars = 1
 let g:python_highlight_builtin_types = 1
 " let g:python_highlight_operators = 1
 highlight Function ctermfg=108
+
+let g:python3_host_prog = '/usr/bin/python'
 
 " Vim test
 let test#python#runner = 'djangotest'
@@ -168,9 +187,10 @@ nnoremap "*p :let @"=substitute(system("wl-paste --no-newline --primary"), '<C-v
 nnoremap <silent> <leader>nv :e ~/.dotfiles/nvim/.vimrc<CR>
 
 " Silver Searcher shortcuts
-noremap <leader>ag :Ag! <C-r>=expand('<cword>')<CR><CR>
+nnoremap <silent> <Leader>ag :Ag <C-R><C-W><CR>
 " exact search
 noremap <leader>AG :AgRaw! -w -Q -s <C-r>=expand('<cword>')<CR><CR>
+
 
 """""""""""""
 " Templates "
@@ -190,7 +210,7 @@ autocmd FileType html,javascript,vim set sts=2
 """"""""""""""
 " Statusline "
 """"""""""""""
-set statusline+=%f\ \ %{FugitiveStatusline()}\ \ %m%=%{&filetype}\ \|
+set statusline+=%f\ \ %m%=%{&filetype}\ \|
 set statusline+=\ %{&fileencoding?&fileencoding:&encoding}\ \|
 set statusline+=\ %{&fileformat}\ \ 
 set statusline+=\ %p%%\ \ 
