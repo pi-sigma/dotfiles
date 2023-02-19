@@ -80,7 +80,7 @@ require('lspconfig')['pylsp'].setup {
 				pycodestyle = {enabled = false},
 				pyflakes = {enabled = false},
 				pylint = {enabled = true},
-				mypy = {enabled = true},
+				mypy = {enabled = false},
 			}
 		}
 	}
@@ -196,8 +196,8 @@ require'nvim-treesitter.configs'.setup {
 		   enable = true,
 		   border = 'none',
 		   peek_definition_code = {
-			  ["<leader>pf"] = "@function.outer",
-			  ["<leader>pc"] = "@class.outer"
+			  ["<leader>df"] = "@function.outer",
+			  ["<leader>dc"] = "@class.outer"
 			}
 		},
     }

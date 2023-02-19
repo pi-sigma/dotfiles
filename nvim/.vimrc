@@ -5,9 +5,6 @@ Plug 'tpope/vim-sensible'
 " Display
 Plug 'morhetz/gruvbox'
 Plug 'sainnhe/gruvbox-material'
-Plug 'mhartington/oceanic-next'
-Plug 'marko-cerovac/material.nvim'
-" Plug 'kaicataldo/material.vim', { 'branch': 'main' }
 Plug 'Yggdroot/indentLine'
 
 " Editing/navigating/searching
@@ -16,7 +13,7 @@ Plug 'tpope/vim-commentary'
 Plug 'junegunn/fzf', { 'dir': '~/opt/fzf' }
 Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-Plug 'jesseleite/vim-agriculture'
+" Plug 'jesseleite/vim-agriculture'
 Plug 'alvan/vim-closetag'
 Plug 'justinmk/vim-sneak'
 Plug 'tpope/vim-surround'
@@ -24,6 +21,8 @@ Plug 'machakann/vim-swap'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+Plug 'yilin-yang/vim-markbar'
+Plug 'gcmt/taboo.vim'
 
 " LSP Support
 Plug 'neovim/nvim-lspconfig'
@@ -68,8 +67,7 @@ call plug#end()
 """""""""""""""""
 " Colorscheme
 colorscheme gruvbox-material
-" colorscheme material
-let g:gruvbox_contrast_dark = 'hard'
+" let g:gruvbox_contrast_dark = 'hard'
 hi DiagnosticError ctermfg=9
 hi DiagnosticWarn ctermfg=11
 
@@ -174,9 +172,10 @@ nnoremap "*p :let @"=substitute(system("wl-paste --no-newline --primary"), '<C-v
 nnoremap <silent> <leader>nv :e ~/.dotfiles/nvim/.vimrc<CR>
 
 " Silver Searcher shortcuts
-noremap <leader>ag :Ag! <C-r>=expand('<cword>')<CR><CR>
+nnoremap <silent> <Leader>ag :Ag <C-R><C-W><CR>
 " exact search
 noremap <leader>AG :AgRaw! -w -Q -s <C-r>=expand('<cword>')<CR><CR>
+
 
 """""""""""""
 " Templates "
@@ -196,7 +195,7 @@ autocmd FileType html,javascript,vim set sts=2
 """"""""""""""
 " Statusline "
 """"""""""""""
-set statusline+=%f\ \ %{FugitiveStatusline()}\ \ %m%=%{&filetype}\ \|
+set statusline+=%f\ \ %m%=%{&filetype}\ \|
 set statusline+=\ %{&fileencoding?&fileencoding:&encoding}\ \|
 set statusline+=\ %{&fileformat}\ \ 
 set statusline+=\ %p%%\ \ 
