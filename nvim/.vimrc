@@ -3,9 +3,13 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'tpope/vim-sensible'
 
 " Display
-Plug 'morhetz/gruvbox'
+" Plug 'morhetz/gruvbox'
 Plug 'sainnhe/gruvbox-material'
+Plug 'sainnhe/everforest'
+Plug 'arcticicestudio/nord-vim'
 Plug 'Yggdroot/indentLine'
+
+" Plug 'dense-analysis/ale'
 
 " Editing/navigating/searching
 Plug 'jiangmiao/auto-pairs'
@@ -58,16 +62,22 @@ Plug 'tpope/vim-rhubarb'
 
 " Other
 Plug 'preservim/vimux'
-
 call plug#end()
 
+" let b:ale_linters = ['pylint']
+" let g:ale_linters_ignore = ['mypy']
+" let g:ale_completion_enabled = 1
 
 """""""""""""""""
 " Plugin config "
 """""""""""""""""
 " Colorscheme
-colorscheme gruvbox-material
+" colorscheme gruvbox
 " let g:gruvbox_contrast_dark = 'hard'
+colorscheme gruvbox-material
+" colorscheme everforest
+" colorscheme nord
+
 hi DiagnosticError ctermfg=9
 hi DiagnosticWarn ctermfg=11
 
@@ -90,6 +100,8 @@ let g:python_highlight_class_vars = 1
 let g:python_highlight_builtin_types = 1
 " let g:python_highlight_operators = 1
 highlight Function ctermfg=108
+
+let g:python3_host_prog = '/usr/bin/python'
 
 " Vim test
 let test#python#runner = 'djangotest'

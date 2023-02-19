@@ -66,19 +66,22 @@ require('lspconfig')['pylsp'].setup {
 	},
 	cmp.setup {
 		completion = {
-			autocomplete = true
+			autocomplete = false
 		}
 	},
 	settings = {
 		pylsp = {
 			plugins = {
 				flake8 = {
-					enabled = true,
+					enabled = false,
 					ignore = {W292,},
 					maxLineLength = 88
 				},
-				pycodestyle = {enabled = false},
-				pyflakes = {enabled = false},
+				pycodestyle = {
+					enabled = true,
+					maxLineLength = 88,
+				},
+				pyflakes = {enabled = true},
 				pylint = {enabled = true},
 				mypy = {enabled = false},
 			}
