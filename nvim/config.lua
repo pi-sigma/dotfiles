@@ -33,7 +33,7 @@ local on_attach = function(client, bufnr)
 
 	local bufopts = { noremap=true, silent=true, buffer=bufnr }
 	vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-	vim.keymap.set('n', '<space>gd', vim.lsp.buf.definition, bufopts)
+	-- vim.keymap.set('n', '<space>gd', vim.lsp.buf.definition, bufopts)
 	vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
 	vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
 	vim.keymap.set('n', '<space>gD', vim.lsp.buf.declaration, bufopts)
@@ -79,10 +79,10 @@ require('lspconfig')['pylsp'].setup {
 				},
 				pycodestyle = {
 					enabled = true,
-					maxLineLength = 88,
+					maxLineLength = 88
 				},
 				pyflakes = {enabled = true},
-				pylint = {enabled = true},
+				pylint = {enabled = false},
 				mypy = {enabled = false},
 			}
 		}

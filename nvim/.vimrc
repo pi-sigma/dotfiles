@@ -5,11 +5,13 @@ Plug 'tpope/vim-sensible'
 " Display
 " Plug 'morhetz/gruvbox'
 Plug 'sainnhe/gruvbox-material'
-Plug 'sainnhe/everforest'
-Plug 'arcticicestudio/nord-vim'
+" Plug 'sainnhe/everforest'
+" Plug 'arcticicestudio/nord-vim'
+" Plug 'sainnhe/everforest'
+" Plug 'arcticicestudio/nord-vim'
 Plug 'Yggdroot/indentLine'
 
-" Plug 'dense-analysis/ale'
+Plug 'dense-analysis/ale'
 
 " Editing/navigating/searching
 Plug 'jiangmiao/auto-pairs'
@@ -64,7 +66,7 @@ Plug 'tpope/vim-rhubarb'
 Plug 'preservim/vimux'
 call plug#end()
 
-" let b:ale_linters = ['pylint']
+let b:ale_linters = ['pylint']
 " let g:ale_linters_ignore = ['mypy']
 " let g:ale_completion_enabled = 1
 
@@ -75,6 +77,7 @@ call plug#end()
 " colorscheme gruvbox
 " let g:gruvbox_contrast_dark = 'hard'
 colorscheme gruvbox-material
+" let g:gruvbox_contrast_dark = 'hard'
 " colorscheme everforest
 " colorscheme nord
 
