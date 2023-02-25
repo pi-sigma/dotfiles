@@ -3,15 +3,14 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'tpope/vim-sensible'
 
 " Display
-" Plug 'morhetz/gruvbox'
+Plug 'guns/xterm-color-table.vim'
+Plug 'xolox/vim-colorscheme-switcher'
+Plug 'flazz/vim-colorschemes'
+Plug 'xolox/vim-misc'
 Plug 'sainnhe/gruvbox-material'
-" Plug 'sainnhe/everforest'
-" Plug 'arcticicestudio/nord-vim'
-" Plug 'sainnhe/everforest'
-" Plug 'arcticicestudio/nord-vim'
+Plug 'arcticicestudio/nord-vim'
 Plug 'Yggdroot/indentLine'
-
-Plug 'dense-analysis/ale'
+Plug 'nvim-treesitter/playground'
 
 " Editing/navigating/searching
 Plug 'jiangmiao/auto-pairs'
@@ -63,26 +62,25 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 
 " Other
+" Plug 'dense-analysis/ale'
 Plug 'preservim/vimux'
 call plug#end()
-
-let b:ale_linters = ['pylint']
-" let g:ale_linters_ignore = ['mypy']
-" let g:ale_completion_enabled = 1
 
 """""""""""""""""
 " Plugin config "
 """""""""""""""""
+" Ale
+" let b:ale_linters = ['pylint']
+
 " Colorscheme
-" colorscheme gruvbox
-" let g:gruvbox_contrast_dark = 'hard'
 colorscheme gruvbox-material
-" let g:gruvbox_contrast_dark = 'hard'
-" colorscheme everforest
 " colorscheme nord
 
-hi DiagnosticError ctermfg=9
-hi DiagnosticWarn ctermfg=11
+" change colors for nord
+" hi function ctermfg=74
+" hi comment ctermfg=243
+" hi DiagnosticError ctermfg=9
+" hi DiagnosticWarn ctermfg=11
 
 " Indentline
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
@@ -96,18 +94,16 @@ let g:closetag_shortcut = '>'
 " Add > at current position without closing the current tag, default is ''
 let g:closetag_close_shortcut = '<leader>>'
 
-" Python syntax
+" Python
 let g:python_highlight_builtins = 1
 let g:python_highlight_func_calls = 1
 let g:python_highlight_class_vars = 1
 let g:python_highlight_builtin_types = 1
-" let g:python_highlight_operators = 1
-highlight Function ctermfg=108
-
 let g:python3_host_prog = '/usr/bin/python'
 
 " Vim test
 let test#python#runner = 'djangotest'
+" let test#project_root = ''
 nmap <silent> <leader>t :TestNearest<CR>
 nmap <silent> <leader>T :TestFile<CR>
 nmap <silent> <leader>a :TestSuite<CR>
@@ -117,6 +113,7 @@ nmap <silent> <leader>g :TestVisit<CR>
 " Lua/LSP
 lua require('config')
 inoremap <C-x><C-x> <Cmd>lua require('cmp').complete()<CR>
+
 
 """"""""""""""""""""
 " General settings "
