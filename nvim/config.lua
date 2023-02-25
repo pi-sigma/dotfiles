@@ -47,6 +47,7 @@ local on_attach = function(client, bufnr)
 	vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
 end
 
+-- C
 require('lspconfig')['clangd'].setup {
 	on_attach = on_attach,
 	flags = {
@@ -58,7 +59,7 @@ require('lspconfig')['clangd'].setup {
 		}
 	}
 }
-
+-- Python
 require('lspconfig')['pylsp'].setup {
 	on_attach = on_attach,
 	flags = {
@@ -88,7 +89,7 @@ require('lspconfig')['pylsp'].setup {
 		}
 	}
 }
-
+-- Lua
 require('lspconfig')['sumneko_lua'].setup {
 	on_attach = on_attach,
 	flags = {
@@ -107,7 +108,7 @@ require('lspconfig')['sumneko_lua'].setup {
 		}
 	}
 }
-
+-- JavaScript/TypeScript
 require('lspconfig')['tsserver'].setup {
 	on_attach = on_attach,
 	flags = {
@@ -120,7 +121,6 @@ require('lspconfig')['tsserver'].setup {
 		}
 	},
 }
-
 
 
 -- treesitter
@@ -141,7 +141,6 @@ require'nvim-treesitter.configs'.setup {
     -- `false` will disable the whole extension
     enable = true,
 
-    disable = { },
     -- Use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
     disable = function(lang, buf)
         local max_filesize = 100 * 1024 -- 100 KB
@@ -151,13 +150,27 @@ require'nvim-treesitter.configs'.setup {
         end
     end,
 
-    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-    -- Using this option may slow down your editor, and you may see some duplicate highlights.
-    -- Instead of true it can also be a list of languages
     additional_vim_regex_highlighting = false,
   },
 }
+
+
+-- helper functions for swapping textobjects with treesitter
+local swap_next, swap_prev = (function()
+	local swap_objects = {
+		p = "@parameter.inner",
+		f = "@function.outer",
+		c = "@class.outer",
+	}
+	local n, p = {}, {}
+
+	for key, obj in pairs(swap_objects) do
+		n[string.format("<A-n><A-%s>", key)] = obj
+		p[string.format("<A-p><A-%s>", key)] = obj
+	end
+
+	return n, p
+end)()
 
 
 -- treesitter: textobjects
@@ -168,7 +181,7 @@ require'nvim-treesitter.configs'.setup {
             -- Automatically jump forward to textobj, similar to targets.vim 
             lookahead = true,
             keymaps = {
-                -- You can use the capture groups defined in textobjects.scm
+                -- Use capture groups defined in textobjects.scm
                 ["af"] = "@function.outer",
                 ["if"] = "@function.inner",
                 ["ac"] = "@class.outer",
@@ -177,7 +190,7 @@ require'nvim-treesitter.configs'.setup {
         },
         move = {
             enable = true,
-            set_jumps = true, 
+            set_jumps = true,
             goto_next_start = {
                 [']m'] = '@function.outer',
                 [']]'] = '@class.outer'
@@ -202,6 +215,11 @@ require'nvim-treesitter.configs'.setup {
 			  ["<leader>df"] = "@function.outer",
 			  ["<leader>dc"] = "@class.outer"
 			}
+		},
+		swap = {
+		  enable = true,
+		  swap_next = swap_next,
+		  swap_previous = swap_prev,
 		},
     }
 }
