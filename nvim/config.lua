@@ -7,10 +7,10 @@ lsp.setup()
 
 -- Diagnostics
 vim.diagnostic.config({
-  severity_sort = true,
-  float = {
-    source = "always",
-  },
+	severity_sort = true,
+	float = {
+		source = "always",
+	},
 })
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 	vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -23,8 +23,8 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 -- Diagnostic signs
 local signs = { Error = ">>", Warn = "--", Hint = "--", Info = "--" }
 for type, icon in pairs(signs) do
-    local hl = "DiagnosticSign" .. type
-    vim.fn.sign_define(hl, { text = icon, texthl= hl, numhl = hl })
+	local hl = "DiagnosticSign" .. type
+   vim.fn.sign_define(hl, { text = icon, texthl= hl, numhl = hl })
 end
 
 local on_attach = function(client, bufnr)
@@ -49,9 +49,9 @@ cmp.setup {
 			max_width = 0
 		}
 	},
-	completion = {
-		autocomplete = false
-	}
+	-- completion = {
+	-- 	autocomplete = false
+	-- }
 }
 
 -- C
@@ -110,29 +110,6 @@ require('lspconfig')['pylsp'].setup {
 }
 
 
--- treesitter
-require'nvim-treesitter.configs'.setup {
-  ensure_installed = { "c", "lua", "vim", "help" },
-  sync_install = false,
-  auto_install = true,
-  ignore_install = { },
-
-  highlight = {
-    enable = false,
-    -- Use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
-    disable = function(lang, buf)
-        local max_filesize = 100 * 1024 -- 100 KB
-        local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-        if ok and stats and stats.size > max_filesize then
-            return true
-        end
-    end,
-
-    additional_vim_regex_highlighting = false,
-  },
-}
-
-
 -- helper functions for swapping textobjects with treesitter
 local swap_next, swap_prev = (function()
 	local swap_objects = {
@@ -150,54 +127,72 @@ local swap_next, swap_prev = (function()
 	return n, p
 end)()
 
-
--- treesitter: textobjects
+-- treesitter
 require'nvim-treesitter.configs'.setup {
-    textobjects = {
-        select = {
-            enable = true,
-            -- Automatically jump forward to textobj, similar to targets.vim 
-            lookahead = true,
-            keymaps = {
-                -- Use capture groups defined in textobjects.scm
-                ["af"] = "@function.outer",
-                ["if"] = "@function.inner",
-                ["ac"] = "@class.outer",
-                ["ic"] = "@class.inner"
-            }
-        },
-        move = {
-            enable = true,
-            set_jumps = true,
-            goto_next_start = {
-                [']m'] = '@function.outer',
-                [']]'] = '@class.outer'
-            },
-            goto_next_end = {
-                [']M'] = '@function.outer',
-                [']['] = '@class.outer'
-            },
-            goto_previous_start = {
-                ['[m'] = '@function.outer',
-                ['[['] = '@class.outer'
-            },
-            goto_previous_end = {
-                ['[M'] = '@function.outer',
-                ['[]'] = '@class.outer'
-            }
-        },
-		lsp_interop = {
-		   enable = true,
-		   border = 'none',
-		   peek_definition_code = {
-			  ["<leader>df"] = "@function.outer",
-			  ["<leader>dc"] = "@class.outer"
+	ensure_installed = { "c", "lua", "vim", "help" },
+	sync_install = false,
+	auto_install = true,
+	ignore_install = { },
+
+	highlight = {
+		enable = false,
+		-- Use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
+		disable = function(lang, buf)
+			local max_filesize = 100 * 1024 -- 100 KB
+			local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+			if ok and stats and stats.size > max_filesize then
+				return true
+			end
+		end,
+
+		additional_vim_regex_highlighting = false,
+	},
+
+   textobjects = {
+      select = {
+         enable = true,
+			-- Automatically jump forward to textobj, similar to targets.vim 
+			lookahead = true,
+			keymaps = {
+				-- Use capture groups defined in textobjects.scm
+				["af"] = "@function.outer",
+				["if"] = "@function.inner",
+				["ac"] = "@class.outer",
+				["ic"] = "@class.inner",
+         },
+      },
+		move = {
+			enable = true,
+			set_jumps = true,
+			goto_next_start = {
+				[']m'] = '@function.outer',
+				[']]'] = '@class.outer'
+			},
+			goto_next_end = {
+				[']M'] = '@function.outer',
+				[']['] = '@class.outer'
+			},
+			goto_previous_start = {
+				['[m'] = '@function.outer',
+				['[['] = '@class.outer'
+			},
+			goto_previous_end = {
+				['[M'] = '@function.outer',
+				['[]'] = '@class.outer'
 			}
 		},
 		swap = {
-		  enable = true,
-		  swap_next = swap_next,
-		  swap_previous = swap_prev,
+			enable = true,
+			swap_next = swap_next,
+			swap_previous = swap_prev,
 		},
-    }
+		lsp_interop = {
+			enable = true,
+			border = 'none',
+			peek_definition_code = {
+				["<leader>df"] = "@function.outer",
+				["<leader>dc"] = "@class.outer"
+			}
+		},
+   },
 }
