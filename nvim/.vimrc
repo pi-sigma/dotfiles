@@ -199,12 +199,15 @@ autocmd BufNewFile *.html 0r ~/.vim_templates/base.html
 """"""""""""""""""""""""""""""""""""
 " Shiftwidth, tabstop, softtabstop "
 """"""""""""""""""""""""""""""""""""
-autocmd FileType c,lua,sh set sw=4
-autocmd FileType c,lua,sh set ts=4
-autocmd FileType c,lua,sh set sts=4
 autocmd FileType html,javascript,vim set sw=2
 autocmd FileType html,javascript,vim set ts=2
 autocmd FileType html,javascript,vim set sts=2
+autocmd FileType lua set sw=3
+autocmd FileType lua set ts=3
+autocmd FileType lua set sts=3
+autocmd FileType c,sh set sw=4
+autocmd FileType c,sh set ts=4
+autocmd FileType c,sh set sts=4
 
 """"""""""""""
 " Statusline "
