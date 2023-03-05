@@ -3,14 +3,14 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'tpope/vim-sensible'
 
 " Display
-Plug 'guns/xterm-color-table.vim'
-Plug 'xolox/vim-colorscheme-switcher'
 Plug 'flazz/vim-colorschemes'
-Plug 'xolox/vim-misc'
+Plug 'guns/xterm-color-table.vim'
+Plug 'morhetz/gruvbox'
 Plug 'sainnhe/gruvbox-material'
-Plug 'arcticicestudio/nord-vim'
-Plug 'Yggdroot/indentLine'
 Plug 'nvim-treesitter/playground'
+Plug 'xolox/vim-colorscheme-switcher'
+Plug 'xolox/vim-misc'
+Plug 'Yggdroot/indentLine'
 
 " Editing/navigating/searching
 Plug 'jiangmiao/auto-pairs'
@@ -20,9 +20,9 @@ Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 " Plug 'jesseleite/vim-agriculture'
 Plug 'alvan/vim-closetag'
+Plug 'jeetsukumaran/vim-buffergator'
 Plug 'justinmk/vim-sneak'
 Plug 'tpope/vim-surround'
-Plug 'machakann/vim-swap'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
@@ -36,12 +36,12 @@ Plug 'williamboman/mason-lspconfig.nvim'
 Plug 'VonHeikemen/lsp-zero.nvim'
 
 " Autocompletion
-Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-buffer'
-Plug 'hrsh7th/cmp-path'
-Plug 'saadparwaiz1/cmp_luasnip'
-Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-nvim-lua'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'saadparwaiz1/cmp_luasnip'
 
 " Snippets
 Plug 'L3MON4D3/LuaSnip'
@@ -62,23 +62,24 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 
 " Other
-" Plug 'dense-analysis/ale'
 Plug 'preservim/vimux'
 call plug#end()
+
 
 """""""""""""""""
 " Plugin config "
 """""""""""""""""
-" Ale
-" let b:ale_linters = ['pylint']
+" Buffergator
+let g:buffergator_viewport_split_policy = "B"
 
 " Colorscheme
-colorscheme gruvbox-material
-" colorscheme nord
+" let g:gruvbox_material_background = 'medium'
+" let g:gruvbox_material_better_performance = 1
+" let g:gruvbox_material_ui_contrast = 'low'
+" colorscheme gruvbox-material
+colorscheme gruvbox
+hi function ctermfg=108
 
-" change colors for nord
-" hi function ctermfg=74
-" hi comment ctermfg=243
 " hi DiagnosticError ctermfg=9
 " hi DiagnosticWarn ctermfg=11
 
@@ -130,6 +131,7 @@ set smartcase
 set incsearch
 set noswapfile
 set completeopt-=preview  " no scratch buffers on autocomplete
+set completeopt-=menu[one]
 set foldmethod=manual
 set foldnestmax=10
 set nofoldenable
@@ -142,8 +144,8 @@ nmap Q <Nop>
 vnoremap <C-c> "+y
 
 " Buffer
-nnoremap <Leader>b :buffers<CR>:buffer<Space>
-nnoremap <Leader>v :buffers<CR>:vert sbuffer<Space>
+" nnoremap <Leader>b :buffers<CR>:buffer<Space>
+" nnoremap <Leader>v :buffers<CR>:vert sbuffer<Space>
 
 " fuzzy find
 nmap <A-f> :FZF<CR>
