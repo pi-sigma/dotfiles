@@ -173,9 +173,10 @@ nmap <leader>tk <C-w>t<C-w>H
 nmap <leader>th <C-w>t<C-w>K
 
 " Split terminal (horizontal, vertical, bottom)
-noremap <leader>terh :split<cr>:term<cr>
-noremap <leader>terv :vsplit<cr>:term<cr>
-nnoremap <leader>terb :sp<bar>term<cr><c-w>J:resize10<cr>
+noremap <leader>termh :split<cr>:term<cr>
+" noremap <leader>terv :vsplit<cr>:term<cr>
+noremap <leader>termv :vsplit<cr>:term<cr>
+nnoremap <leader>termb :sp<bar>term<cr><c-w>J:resize15<cr>
 
 " Copy & paste to/from clipboard (https://github.com/vim/vim/issues/5157)
 xnoremap "+y y:call system("wl-copy", @")<cr>
