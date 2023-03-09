@@ -1,5 +1,6 @@
 # Apps
 alias vim=nvim
+alias ipython="ipython --no-confirm-exit --quick --InteractiveShellApp.extensions=autoreload --InteractiveShellApp.exec_lines \%autoreload\ 2"
 
 # Navigation
 alias lsa="ls -a"
