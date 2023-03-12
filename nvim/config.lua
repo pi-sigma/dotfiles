@@ -16,6 +16,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 	vim.lsp.diagnostic.on_publish_diagnostics, {
 		signs = true,
 		underline = false,
+		show_diagnostic_autocmds = { 'InsertLeave', 'TextChanged' },
 		virtual_text = true,
 		update_in_insert = false,
 	}
@@ -103,7 +104,6 @@ require('lspconfig')['pylsp'].setup {
 				},
 				pyflakes = {enabled = true},
 				pylint = {enabled = false},
-				mypy = {enabled = false},
 			}
 		}
 	}
