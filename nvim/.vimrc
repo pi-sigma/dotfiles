@@ -52,6 +52,7 @@ Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh' }
 Plug 'vim-test/vim-test'
 
 " Language-specific
+Plug 'jeetsukumaran/vim-python-indent-black'
 Plug 'vim-scripts/python_match.vim'
 Plug 'vim-python/python-syntax'
 Plug 'maxmellon/vim-jsx-pretty'
@@ -63,25 +64,27 @@ Plug 'tpope/vim-rhubarb'
 
 " Other
 Plug 'preservim/vimux'
+Plug 'dense-analysis/ale'
 call plug#end()
 
 
 """""""""""""""""
 " Plugin config "
 """""""""""""""""
+
+" Ale
+let b:ale_linters = ["mypy"]
+let g:ale_linters_ignore = ["flake8", "pylint", "pyflakes", "pycodestyle"]
+let g:ale_use_neovim_diagnostics_api = 1
+
 " Buffergator
 let g:buffergator_viewport_split_policy = "B"
 
 " Colorscheme
-" let g:gruvbox_material_background = 'medium'
-" let g:gruvbox_material_better_performance = 1
-" let g:gruvbox_material_ui_contrast = 'low'
-" colorscheme gruvbox-material
 colorscheme gruvbox
 hi function ctermfg=108
-
-" hi DiagnosticError ctermfg=9
-" hi DiagnosticWarn ctermfg=11
+hi DiagnosticError ctermfg=9
+hi DiagnosticWarn ctermfg=11
 
 " Indentline
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
@@ -101,9 +104,14 @@ let g:python_highlight_func_calls = 1
 let g:python_highlight_class_vars = 1
 let g:python_highlight_builtin_types = 1
 let g:python3_host_prog = '/usr/bin/python'
+let g:pyindent_open_paren = 0
+let g:pyindent_nested_paren = 0
+let g:pyindent_continue = 0
+let g:pyindent_close_paren = 0
 
 " Vim test
-let test#python#runner = 'djangotest'
+" let test#python#runner = 'djangotest'
+let test#python#runner = 'pytest'
 " let test#project_root = ''
 nmap <silent> <leader>t :TestNearest<CR>
 nmap <silent> <leader>T :TestFile<CR>
@@ -142,10 +150,6 @@ set foldlevel=2
 """"""""""""
 nmap Q <Nop>
 vnoremap <C-c> "+y
-
-" Buffer
-" nnoremap <Leader>b :buffers<CR>:buffer<Space>
-" nnoremap <Leader>v :buffers<CR>:vert sbuffer<Space>
 
 " fuzzy find
 nmap <A-f> :FZF<CR>
