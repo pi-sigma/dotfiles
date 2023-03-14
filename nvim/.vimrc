@@ -45,14 +45,15 @@ Plug 'saadparwaiz1/cmp_luasnip'
 
 " Snippets
 Plug 'L3MON4D3/LuaSnip'
-" Plug 'rafamadriz/friendly-snippets'
+Plug 'rafamadriz/friendly-snippets'
+" Plug 'SirVer/ultisnips'
 
 " Testing & debugging
 Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh' }
 Plug 'vim-test/vim-test'
 
 " Language-specific
-Plug 'jeetsukumaran/vim-python-indent-black'
+Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'vim-scripts/python_match.vim'
 Plug 'vim-python/python-syntax'
 Plug 'maxmellon/vim-jsx-pretty'
@@ -64,9 +65,8 @@ Plug 'tpope/vim-rhubarb'
 
 " Other
 Plug 'preservim/vimux'
-Plug 'dense-analysis/ale'
+" Plug 'dense-analysis/ale'
 call plug#end()
-
 
 """""""""""""""""
 " Plugin config "
@@ -104,20 +104,13 @@ let g:python_highlight_func_calls = 1
 let g:python_highlight_class_vars = 1
 let g:python_highlight_builtin_types = 1
 let g:python3_host_prog = '/usr/bin/python'
-let g:pyindent_open_paren = 0
-let g:pyindent_nested_paren = 0
-let g:pyindent_continue = 0
-let g:pyindent_close_paren = 0
 
 " Vim test
 " let test#python#runner = 'djangotest'
 let test#python#runner = 'pytest'
 " let test#project_root = ''
-nmap <silent> <leader>t :TestNearest<CR>
-nmap <silent> <leader>T :TestFile<CR>
-nmap <silent> <leader>a :TestSuite<CR>
-nmap <silent> <leader>l :TestLast<CR>
-nmap <silent> <leader>g :TestVisit<CR>
+" nmap <silent> <leader>t :TestNearest --keepdb<CR>
+" nmap <silent> <leader>l :TestLast<CR>
 
 " Lua/LSP
 lua require('config')
