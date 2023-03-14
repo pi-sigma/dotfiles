@@ -16,8 +16,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 	vim.lsp.diagnostic.on_publish_diagnostics, {
 		signs = true,
 		underline = false,
-		show_diagnostic_autocmds = { 'InsertLeave', 'TextChanged' },
-		virtual_text = true,
+		virtual_text = false,
 		update_in_insert = false,
 	}
 )
@@ -42,6 +41,7 @@ local on_attach = function(client, bufnr)
 	vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
 end
 
+
 -- Global completion setup
 cmp.setup {
 	window = {
@@ -50,9 +50,6 @@ cmp.setup {
 			max_width = 0
 		}
 	},
-	-- completion = {
-	-- 	autocomplete = false
-	-- }
 }
 
 -- C
@@ -129,22 +126,13 @@ end)()
 
 -- treesitter
 require'nvim-treesitter.configs'.setup {
-	ensure_installed = { "c", "lua", "vim", "help" },
+	ensure_installed = {"c", "lua", "python", "vim", "help"},
 	sync_install = false,
-	auto_install = true,
+	auto_install = false,
 	ignore_install = { },
 
 	highlight = {
 		enable = false,
-		-- Use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
-		disable = function(lang, buf)
-			local max_filesize = 100 * 1024 -- 100 KB
-			local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-			if ok and stats and stats.size > max_filesize then
-				return true
-			end
-		end,
-
 		additional_vim_regex_highlighting = false,
 	},
 
@@ -164,21 +152,23 @@ require'nvim-treesitter.configs'.setup {
 		move = {
 			enable = true,
 			set_jumps = true,
+			-- jump forward
 			goto_next_start = {
-				[']m'] = '@function.outer',
-				[']]'] = '@class.outer'
+				[']f'] = '@function.outer',
+				[']c'] = '@class.outer'
 			},
-			goto_next_end = {
-				[']M'] = '@function.outer',
-				[']['] = '@class.outer'
+			goto_this_end = {
+				[']F'] = '@function.outer',
+				[']C'] = '@class.outer'
 			},
-			goto_previous_start = {
-				['[m'] = '@function.outer',
-				['[['] = '@class.outer'
+			-- jump backward
+			goto_this_start = {
+				['[f'] = '@function.outer',
+				['[c'] = '@class.outer'
 			},
 			goto_previous_end = {
-				['[M'] = '@function.outer',
-				['[]'] = '@class.outer'
+				['[F'] = '@function.outer',
+				['[C'] = '@class.outer'
 			}
 		},
 		swap = {
@@ -196,3 +186,5 @@ require'nvim-treesitter.configs'.setup {
 		},
    },
 }
+
+require'luasnip'.filetype_extend("ruby", {"django"})
