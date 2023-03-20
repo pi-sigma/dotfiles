@@ -1,0 +1,12 @@
+.git
+venv/
+of-main/
+
+.mypy_cache/
+.pytest_cache/
+.pytype
+__pycache__
+.idea
+
+node_modules
+.tox

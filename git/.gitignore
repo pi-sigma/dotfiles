@@ -1,13 +1,12 @@
-# Python files
+# Developer files
 __pycache__
-
-# Editor files
 .idea
-
-
-# Environments
+.vimspector.json
 .env
 venv/
+*-main
+dj-test.sh
+.mypy_cache/
 
 # Config files
 mypy.ini
@@ -15,3 +14,13 @@ setup.cfg
 
 # Other
 /tags
+
+# files
+*.pdf
+
+#
+*/scratches/
+*scratch*
+code_snippets*
+djtest.sh
+dev_snippets*

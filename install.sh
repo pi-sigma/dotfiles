@@ -17,7 +17,8 @@ source $basedir/git/git.sh
 source $basedir/nvim/nvim.sh
 
 # Misc.
-ln -sf $basedir/.ctags ~
+ln -sf $basedir/exclude.ctags ~/.config/ctags/
+ln -sf $basedir/.fzfignore ~/.fzf/
 ln -sf $basedir/ipython/startup/ ~/.ipython/profile_default/
 ln -sf $basedir/.pylintrc ~
 ln -sf $basedir/.tmux.conf ~

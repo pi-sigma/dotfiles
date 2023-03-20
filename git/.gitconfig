@@ -13,3 +13,5 @@
     	cmd = meld "$LOCAL" "$REMOTE"
 [alias]
 	dt = difftool -d
+[push]
+	autoSetupRemote = true
