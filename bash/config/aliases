@@ -3,8 +3,15 @@ alias vim=nvim
 alias ipython="ipython --no-confirm-exit --quick --InteractiveShellApp.extensions=autoreload --InteractiveShellApp.exec_lines \%autoreload\ 2"
 
 # Navigation
-alias lsa="ls -a"
-alias lla="ls -la"
+alias ls="ls --color=auto"
+alias lsl="ls -l --color=auto"
+alias lsa="ls -a --color=auto"
+alias lsal="ls -al --color=auto"
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
+
+# goto commands
+alias goto=". goto.sh"
+
+alias djtest=". djtest.sh"
