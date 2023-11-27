@@ -1,0 +1,25 @@
+# Developer files
+__pycache__
+.idea
+.env
+venv/
+*-main
+djtest.sh
+.mypy_cache/
+.nvim/
+
+# Config files
+mypy.ini
+setup.cfg
+
+# Other
+/tags
+
+# files
+*.pdf
+
+#
+*/scratches/
+*scratch*
+code_snippets*
+dev_snippets*
