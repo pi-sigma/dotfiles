@@ -20,7 +20,7 @@ fi
 # Config
 mkdir -p ~/.config/nvim/lua
 mkdir -p ~/.config/nvim/after/syntax
-ln -sf $neovim/init.vim ~/.config/nvim/init.vim
+ln -sf $neovim/init.lua ~/.config/nvim/init.lua
 ln -sf $neovim/config.lua ~/.config/nvim/lua/config.lua
 ln -sf $neovim/python.vim ~/.config/nvim/after/syntax/
 ln -sf $neovim/.vim_templates ~
