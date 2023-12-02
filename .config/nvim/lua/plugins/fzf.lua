@@ -4,7 +4,7 @@ return {
         build = "./install --bin",
         config = function ()
             vim.keymap.set("n", "<a-F>", ":FZF<CR>", {})
-            vim.keymap.set("n", "<leader>b", ":Buffers<cr>", {})
+            -- vim.keymap.set("n", "<leader>b", ":Buffers<cr>", {})
         end
     },
     {

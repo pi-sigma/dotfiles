@@ -1,11 +1,10 @@
 # Developer files
 __pycache__
 .idea
-.vimspector.json
 .env
 venv/
 *-main
-dj-test.sh
+djtest.sh
 .mypy_cache/
 
 # Config files
@@ -22,5 +21,4 @@ setup.cfg
 */scratches/
 *scratch*
 code_snippets*
-djtest.sh
 dev_snippets*

@@ -23,9 +23,6 @@ if [ -d ~/.dotfiles/bash/config ]; then
 fi
 unset rc
 
-# load fzf
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-
 # determine search program for fzf
 if type fd &> /dev/null; then
 	export FZF_DEFAULT_COMMAND='fd --type file --hidden --follow --no-ignore-vcs'
@@ -45,3 +42,42 @@ build_ps1() {
     echo "${prompt_color}${host}\w\[\e[0m\] \$ "
 }
 PS1=$(build_ps1)
+
+[ -f "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.bash ] && source "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.bash
+
+
+#
+# Aliases
+#
+# applications & scripts
+alias djtest=". djtest.sh"
+alias vim=nvim
+alias ipython="ipython --no-confirm-exit --quick --InteractiveShellApp.extensions=autoreload --InteractiveShellApp.exec_lines \%autoreload\ 2"
+
+# navigation
+alias ls="ls --color=auto"
+alias lsl="ls -l --color=auto"
+alias lsa="ls -a --color=auto"
+alias lsal="ls -al --color=auto"
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias goto=". goto.sh"
+
+#
+# Functions
+#
+# Create a new directory and enter it
+function mk() {
+  mkdir -p "$@" && cd "$@"
+}
+
+# Activate virtual env and save the path as a tmux variable,
+# so that new panes/windows can re-activate as necessary
+function sv() {
+    source venv/bin/activate &&
+    tmux set-environment VIRTUAL_ENV $VIRTUAL_ENV
+}
+if [ -n "$VIRTUAL_ENV" ]; then
+    source $VIRTUAL_ENV/bin/activate;
+fi

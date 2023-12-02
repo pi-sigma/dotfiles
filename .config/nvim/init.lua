@@ -13,15 +13,17 @@ vim.opt.rtp:prepend(lazypath)
 
 vim.g.mapleader = ","
 
-require("lazy").setup("plugins")
+require("lazy").setup("plugins", {
+    change_detection = {
+        notify = false,
+    },
+})
 
 require("config.options")
 require("config.mappings")
+
 require("config.lsp.cmp")
 require("config.lsp.diagnostic")
 require("config.lsp.lspconfig")
 
 require("functions")
-
-require("highlight.c")
-require("highlight.python")
