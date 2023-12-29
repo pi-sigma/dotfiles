@@ -17,6 +17,7 @@ return {
     "Vimjas/vim-python-pep8-indent",
     "vim-scripts/python_match.vim",
     "maxmellon/vim-jsx-pretty",
+    "bfrg/vim-cpp-modern",
 
     "jesseleite/vim-agriculture",
     "tpope/vim-commentary",

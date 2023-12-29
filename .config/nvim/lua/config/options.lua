@@ -31,7 +31,7 @@ vim.opt.equalalways = true      -- resize windows
 -- shiftwidth, tabstop, softtabstop
 vim.api.nvim_create_autocmd("FileType", {
     pattern = {
-        "c", "css", "html", "htmldjango", "javascript", "json", "lua", "scss", "yaml", "vim",
+        "c", "css", "html", "htmldjango", "javascript", "json", "lua", "scss", "sh", "yaml", "vim",
     },
     callback = function()
         vim.opt.shiftwidth = 4

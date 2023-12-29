@@ -1,9 +1,11 @@
 local lspconfig = require('lspconfig')
 local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-local on_attach = function(_, bufnr)
-   -- See `:help vim.lsp.*` for documentation on any of the below functions
+local on_attach = function(client, bufnr)
     local bufopts = { noremap = true, silent = true, buffer = bufnr }
+
+    -- disable syntax highlighting (conflicts with treesitter)
+    client.server_capabilities.semanticTokensProvider = nil
 
     vim.keymap.set('n', '<leader>gD', vim.lsp.buf.declaration, bufopts)
     vim.keymap.set('n', '<leader>gd', vim.lsp.buf.definition, bufopts)
@@ -12,6 +14,15 @@ local on_attach = function(_, bufnr)
     vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, bufopts)
     vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
 end
+
+-- Bash
+lspconfig.bashls.setup {
+    capabilities = lsp_capabilities,
+    on_attach = on_attach,
+    flags = {
+        debounce_text_changes = 150
+    },
+}
 
 -- C
 lspconfig.clangd.setup {
@@ -70,6 +81,7 @@ lspconfig.pylsp.setup {
                 pylint = { enabled = false, executable = "pylint" },
                 pyflakes = { enabled = true },
                 mypy = {enabled = false},
+                ruff = { enabled = false },
             },
         },
     }

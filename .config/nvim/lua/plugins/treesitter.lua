@@ -27,7 +27,7 @@ return {
 
         opts = {
             ensure_installed = { "c", "javascript", "lua", "markdown", "python", "vim", "vimdoc" },
-            sync_install = false,
+            sync_install = true,
             auto_install = false,
             ignore_install = {},
             highlight = {
@@ -36,7 +36,7 @@ return {
             },
             textobjects = {
                 select = {
-                    enable = true,
+                    enable = false,
                     -- Automatically jump forward to textobj, similar to targets.vim
                     lookahead = true,
                     keymaps = {

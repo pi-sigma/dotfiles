@@ -6,6 +6,7 @@ venv/
 *-main
 djtest.sh
 .mypy_cache/
+.nvim/
 
 # Config files
 mypy.ini
