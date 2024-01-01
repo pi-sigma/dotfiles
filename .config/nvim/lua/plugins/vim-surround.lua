@@ -1,0 +1,6 @@
+vim.keymap.set("n", "<leader>}}", "ysiw}", {remap = true})
+vim.keymap.set("n", "<leader>{{", "ysiw{", {remap = true})
+vim.keymap.set("n", "<leader>))", "ysiw)", {remap = true})
+vim.keymap.set("n", "<leader>((", "ysiw(", {remap = true})
+vim.keymap.set("n", '<leader>""', 'ysiw"', {remap = true})
+vim.keymap.set("n", "<leader>''", "ysiw'", {remap = true})

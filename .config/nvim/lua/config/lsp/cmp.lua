@@ -7,8 +7,6 @@ local luasnip = require("luasnip")
 
 local select_opts = {behavior = cmp.SelectBehavior.Select}
 
-vim.api.nvim_set_hl(0, "PMenu", { bg = "#3d3939"})
-
 cmp.setup({
     snippet = {
         expand = function(args)
@@ -22,10 +20,6 @@ cmp.setup({
         {name = "luasnip", keyword_length = 2},
     },
     window = {
-        -- completion = {
-            -- border = "rounded",
-            -- winhighlight = "Normal:CmpNormal",
-        -- },
         documentation = false
     },
     mapping = {

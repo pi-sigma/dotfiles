@@ -1,29 +1,22 @@
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-    vim.fn.system({
-        "git",
-        "clone",
-        "--filter=blob:none",
-        "https://github.com/folke/lazy.nvim.git",
-        "--branch=stable",
-        lazypath,
-    })
-end
-vim.opt.rtp:prepend(lazypath)
-
-vim.g.mapleader = ","
-
-require("lazy").setup("plugins", {
-    change_detection = {
-        notify = false,
-    },
-})
-
 require("config.options")
 require("config.mappings")
-
 require("config.lsp.cmp")
 require("config.lsp.diagnostic")
 require("config.lsp.lspconfig")
+
+require("plugins.aerial")
+require("plugins.colorscheme")
+require("plugins.fzf")
+require("plugins.harpoon")
+require("plugins.inc-rename")
+require("plugins.lsp_signature")
+require("plugins.mason")
+require("plugins.neo-tree")
+require("plugins.nvim-autopairs")
+require("plugins.telescope")
+require("plugins.treesitter")
+require("plugins.vim-surround")
+
+require("autocommands.filetype")
 
 require("functions")

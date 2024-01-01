@@ -1,5 +1,7 @@
 local opts = { silent = true }
 
+vim.g.mapleader = ","
+
 -- save
 vim.keymap.set("n", "<leader>w", ":update<CR>", {})
 
@@ -41,12 +43,11 @@ vim.keymap.set("n", "<leader>termv", ":vsplit<CR>:term<CR>", opts)
 vim.keymap.set("n", "<leader>termb", ":sp<bar>term<CR><C-W>j:resize15<CR>", opts)
 
 -- tabs
-vim.keymap.set("n", "<leader>T", ":tabnew<CR>", opts)
+vim.keymap.set("n", "<leader>tt", ":tabnew<CR>", opts)
 
 -- yank/paste
-vim.keymap.set('', '<leader>y', '"+y', {desc = "Yank to clipboard", silent = true})
+vim.keymap.set('', '<C-c>', '"+y', {desc = "Yank to clipboard", silent = true})
+vim.keymap.set('', '<C-v>', '"+p', {desc = "Paste after cursor from clipboard", silent = true})
 vim.keymap.set('', '<leader>Y', '"+y$', {desc = "Yank until EOL to clipboard", silent = true})
-vim.keymap.set('n', '<leader>p', '"+p', {desc = "Paste after cursor from clipboard", silent = true})
-vim.keymap.set('n', '<leader>P', '"+P', {desc = "Paste before cursor from clipboard", silent = true})
-vim.keymap.set("n", "<leader>0", '"+p', {desc = "Paste from 0 register", silent=true})
-vim.keymap.set("v", "<leader>0", '"+p', {desc = "Paste from 0 register", silent=true})
+vim.keymap.set("n", "<leader>0", '"+p', {desc = "Paste from 0 register", silent = true})
+vim.keymap.set("v", "<leader>0", '"+p', {desc = "Paste from 0 register", silent = true})

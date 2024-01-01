@@ -50,9 +50,10 @@ PS1=$(build_ps1)
 # Aliases
 #
 # applications & scripts
-alias djtest=". djtest.sh"
-alias vim=nvim
+alias djtest=". $HOME/.local/bin/djtest.sh"
 alias ipython="ipython --no-confirm-exit --quick --InteractiveShellApp.extensions=autoreload --InteractiveShellApp.exec_lines \%autoreload\ 2"
+alias plugnvim="$HOME/.local/bin/plugnvim.sh"
+alias vim=nvim
 
 # navigation
 alias ls="ls --color=auto"
