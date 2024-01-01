@@ -1,5 +1,3 @@
-vim.opt.syntax = "on"
-
 -- gutter/line numbers
 vim.opt.number = true
 vim.opt.relativenumber = true
@@ -7,8 +5,9 @@ vim.opt.signcolumn = "number"   -- show current line number in gutter
 
 -- folding
 vim.opt.foldmethod = "manual"
-vim.opt.foldlevel = 2
-vim.opt.foldnestmax = 10
+vim.opt.foldlevel = 99
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+-- vim.opt.foldnestmax = 10
 
 -- splits
 vim.opt.splitbelow = true
@@ -20,34 +19,33 @@ vim.opt.smartcase = true
 
 vim.opt.incsearch = true
 vim.opt.swapfile = false
-vim.opt.expandtab = true        -- tabs > spaces
-vim.opt.scrolloff = 999         -- center view
-vim.opt.laststatus = 2          -- permanent statusline
-vim.opt.hidden = true           -- hide buffers instead of deleting them
-vim.opt.ttyfast = true          -- scrolling performance
-vim.opt.conceallevel = 0        -- prevent hiding of symbols in yaml, json, etc.
-vim.opt.equalalways = true      -- resize windows
 
--- shiftwidth, tabstop, softtabstop
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = {
-        "c", "css", "html", "htmldjango", "javascript", "json", "lua", "scss", "sh", "yaml", "vim",
-    },
-    callback = function()
-        vim.opt.shiftwidth = 4
-        vim.opt.tabstop = 4
-        vim.opt.softtabstop = 4
-    end
-})
+-- tabs > spaces
+vim.opt.expandtab = true
 
--- line-wrap
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = { "markdown" },
-    callback = function()
-        vim.opt_local.wrap = true
-        vim.opt_local.textwidth = 80
-    end
-})
+-- center view
+vim.opt.scrolloff = 999
+
+-- permanent statusline
+vim.opt.laststatus = 2
+
+-- hide buffers instead of deleting them
+vim.opt.hidden = true
+
+-- scrolling performance
+vim.opt.ttyfast = true
+
+-- prevent hiding of symbols in yaml, json, etc.
+vim.opt.conceallevel = 0
+
+-- resize windows
+vim.opt.equalalways = true
 
 -- statusline
 vim.opt.statusline = "%f %m%= %{&filetype?&filetype:&filetype}  %p%%  %l:%c "
+
+-- file search across directories
+vim.opt.path:append "**"
+
+-- extend session options to save tab names
+vim.opt.sessionoptions = "globals,buffers,curdir,tabpages,help,winpos"

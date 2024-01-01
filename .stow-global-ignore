@@ -2,3 +2,4 @@ install.sh
 setup.sh
 
 .git
+.stow-global-ignore

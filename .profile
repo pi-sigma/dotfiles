@@ -1,6 +1,4 @@
-if [ -f ~/.bashrc ]; then
-	source ~/.bashrc
-fi
+# .profile
 
-# editor
+# Editor
 export EDITOR=/usr/local/bin/nvim;

@@ -1,17 +1,25 @@
 [init]
-	defaultBranch = main
+    defaultBranch = main
 [user]
-	email = mail@paulschilling.de
+    email = mail@paulschilling.de
 [core]
-	excludesfile = ~/.gitignore
-	editor = nvim
+    excludesfile = ~/.gitignore
+    editor = nvim
 [diff]
-    	tool = meld
+    tool = meld
 [difftool]
-    	prompt = false
+    prompt = false
 [difftool "meld"]
-    	cmd = meld "$LOCAL" "$REMOTE"
+    cmd = meld "$LOCAL" "$REMOTE"
 [alias]
-	dt = difftool -d
+    dt = difftool -d
+[merge]
+    tool = meld
+[mergetool "meld"]
+    cmd = meld "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"
 [push]
-	autoSetupRemote = true
+    autoSetupRemote = true
+
+[tig "color"]
+    # area = fg bg
+	cursor = black white 

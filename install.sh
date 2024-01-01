@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Dependencies (on Fedora)
+# libX11-devel libXft-devel libXinerama-devel
+
 # DWM
 if [ -d $HOME/.local/etc/suckless/dwm/ ]; then
         echo "DMW is already installed: skipping"

@@ -1,25 +1,29 @@
 # Developer files
-__pycache__
-.idea
 .env
-venv/
-*-main
+.pre-commit-config.yaml
+.pyre/
+.pyre_configuration
+.vim-sessions/
+dev-tools
 djtest.sh
-.mypy_cache/
-.nvim/
-
-# Config files
-mypy.ini
+Dockerfile.dev
+docker-compose.dev.*
+docker-init-db.sql/*
+*-main
+private.txt
 setup.cfg
+test-cert.crt
+test-cert.key
+venv/
+*.orig
+*.vim
 
-# Other
+# Editor and program files
+.idea
+.mypy_cache/
+__pycache__
+.watchmanconfig
 /tags
 
-# files
-*.pdf
-
-#
-*/scratches/
-*scratch*
-code_snippets*
-dev_snippets*
+# misc.
+history.sqlite
