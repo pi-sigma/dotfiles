@@ -29,22 +29,20 @@ if type fd &> /dev/null; then
 	export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 fi
 
-# load virtualenvwrapper
+# Load virtualenvwrapper
 [ -f ~/.local/bin/virtualenvwrapper.sh ] && source ~/.local/bin/virtualenvwrapper.sh
 
-# terminal prompt
-# export PS1=" \[\e[00;33m\]\w \[\e[0m\] \$ "
-build_ps1() {
-    local prompt_color='\[\e[33m\]'
-    local host=''
-    [[ $UID -eq 0 ]] && prompt_color='\[\e[1;31m\]'
-    [[ $SSH_TTY ]] && host="@$HOSTNAME "
-    echo "${prompt_color}${host}\w\[\e[0m\] \$ "
-}
-PS1=$(build_ps1)
+# Terminal prompt
+YELLOW="\[\e[00;33m\]"
+RESET="\[\e[0m\]"
 
+PS1="$YELLOW\w$RESET \$ "
+
+# fzf
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.bash ] && source "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.bash
 
+# Require virtualenv for pip install
+export PIP_REQUIRE_VIRTUALENV=true
 
 #
 # Aliases
@@ -73,12 +71,13 @@ function mk() {
   mkdir -p "$@" && cd "$@"
 }
 
-# Activate virtual env and save the path as a tmux variable,
+# Activate virtualenv and save the path as a tmux variable,
 # so that new panes/windows can re-activate as necessary
-function sv() {
-    source venv/bin/activate &&
-    tmux set-environment VIRTUAL_ENV $VIRTUAL_ENV
+function venv() {
+    workon $1 && tmux set-environment VIRTUAL_ENV $VIRTUAL_ENV
 }
+
 if [ -n "$VIRTUAL_ENV" ]; then
     source $VIRTUAL_ENV/bin/activate;
+    source $HOME/.virtualenvs/postactivate;
 fi
