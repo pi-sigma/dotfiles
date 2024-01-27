@@ -1,5 +1,9 @@
 local lspconfig = require('lspconfig')
-local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
+local lsp_defaults = lspconfig.util.default_config
+
+lsp_defaults.capabilities = vim.tbl_deep_extend(
+    'force', lsp_defaults.capabilities, require('cmp_nvim_lsp').default_capabilities()
+)
 
 local on_attach = function(client, bufnr)
     local bufopts = { noremap = true, silent = true, buffer = bufnr }
@@ -17,7 +21,6 @@ end
 
 -- Bash
 lspconfig.bashls.setup {
-    capabilities = lsp_capabilities,
     on_attach = on_attach,
     flags = {
         debounce_text_changes = 150
@@ -26,16 +29,20 @@ lspconfig.bashls.setup {
 
 -- C
 lspconfig.clangd.setup {
-    capabilities = lsp_capabilities,
     on_attach = on_attach,
     flags = {
         debounce_text_changes = 150
     },
 }
 
+-- HTML
+lspconfig.html.setup {
+  on_attach = on_attach,
+  filetypes = { 'html', 'htmldjango' }
+}
+
 -- JavaScript/TypeScript
 lspconfig.tsserver.setup {
-    capabilities = lsp_capabilities,
     on_attach = on_attach,
     flags = {
         debounce_text_changes = 150
@@ -45,7 +52,6 @@ lspconfig.tsserver.setup {
 
 -- Lua
 lspconfig.lua_ls.setup {
-    capabilities = lsp_capabilities,
     on_attach = on_attach,
     flags = {
         debounce_text_changes = 150
@@ -61,7 +67,6 @@ lspconfig.lua_ls.setup {
 
 -- Python
 lspconfig.pylsp.setup {
-    capabilities = lsp_capabilities,
     on_attach = on_attach,
     flags = {
         debounce_text_changes = 150
@@ -75,14 +80,23 @@ lspconfig.pylsp.setup {
                     maxLineLength = 88
                 },
                 pycodestyle = {
-                   enabled = true,
+                   enabled = false,
                    maxLineLength = 88
                 },
                 pylint = { enabled = false, executable = "pylint" },
                 pyflakes = { enabled = true },
-                mypy = {enabled = false},
-                ruff = { enabled = false },
+                mypy = {enabled = true},
             },
         },
     }
+}
+
+lspconfig.yamlls.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  settings = {
+    yaml = {
+      schemas = {}
+    }
+  }
 }

@@ -6,6 +6,23 @@ require("neo-tree").setup({
     vim.keymap.set("n", "<leader>nf", ":Neotree reveal<CR>", {}),
 
     enable_git_status = true,
+    filesystem = {
+        filtered_items = {
+            visible = true, -- when true, files will be displayed differently than normal items
+            hide_dotfiles = true,
+            hide_gitignored = true,
+            hide_by_name = {
+                ".DS_Store",
+                "thumbs.db"
+                --"node_modules"
+            },
+            never_show = {
+                ".DS_Store",
+                ".mypy_cache", "__pycache__", ".pytest_cache", ".pytype",
+                ".idea",
+            },
+        },
+    },
     window = {
         position = "float",
         width = 40,

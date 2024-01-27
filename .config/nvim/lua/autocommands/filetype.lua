@@ -13,7 +13,7 @@ end
 -- shiftwidth, tabstop, softtabstop
 vim.api.nvim_create_autocmd("FileType", {
     pattern = {
-        "css", "html", "htmldjango", "javascript", "json", "lua", "scss", "yaml", "vim",
+        "css", "html", "htmldjango", "javascript", "json", "lua", "scss", "vim",
     },
     callback = function()
         set_shiftwidth_tabstop_stabstop(4)
@@ -39,6 +39,7 @@ vim.api.nvim_create_autocmd("FileType", {
     pattern = "dockerfile",
     callback = function()
         vim.api.nvim_set_hl(0, "@function.call", { fg = "#ffd7af" })
+        set_shiftwidth_tabstop_stabstop(4)
     end
 })
 
@@ -60,5 +61,13 @@ vim.api.nvim_create_autocmd("FileType", {
         -- syntax highlighting
         vim.api.nvim_set_hl(0, "@punctuation.special", { fg = "#fe8019" })
         vim.api.nvim_set_hl(0, "shDerefSimple", { fg = "#fe8019" })
+    end
+})
+
+-- yaml
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "yaml",
+    callback = function()
+        set_shiftwidth_tabstop_stabstop(2)
     end
 })

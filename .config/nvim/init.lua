@@ -15,6 +15,7 @@ require("plugins.neo-tree")
 require("plugins.nvim-autopairs")
 require("plugins.telescope")
 require("plugins.treesitter")
+require("plugins.vim-slime")
 require("plugins.vim-surround")
 
 require("autocommands.filetype")
