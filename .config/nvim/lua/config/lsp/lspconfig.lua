@@ -19,6 +19,17 @@ local on_attach = function(client, bufnr)
     vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
 end
 
+local on_attach_with_semantic_tokens = function(client, bufnr)
+    local bufopts = { noremap = true, silent = true, buffer = bufnr }
+
+    vim.keymap.set('n', '<leader>gD', vim.lsp.buf.declaration, bufopts)
+    vim.keymap.set('n', '<leader>gd', vim.lsp.buf.definition, bufopts)
+    vim.keymap.set('n', '<leader><space>', vim.lsp.buf.hover, bufopts)
+    vim.keymap.set('n', '<leader>gi', vim.lsp.buf.implementation, bufopts)
+    vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, bufopts)
+    vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
+end
+
 -- Bash
 lspconfig.bashls.setup {
     on_attach = on_attach,
@@ -35,6 +46,14 @@ lspconfig.clangd.setup {
     },
 }
 
+-- Css
+lspconfig.cssls.setup {
+    on_attach = on_attach,
+    init_options = {
+        camelCase = 'dashes',
+    },
+}
+
 -- HTML
 lspconfig.html.setup {
   on_attach = on_attach,
@@ -43,7 +62,7 @@ lspconfig.html.setup {
 
 -- JavaScript/TypeScript
 lspconfig.tsserver.setup {
-    on_attach = on_attach,
+    on_attach = on_attach_with_semantic_tokens,
     flags = {
         debounce_text_changes = 150
     },
@@ -74,26 +93,19 @@ lspconfig.pylsp.setup {
     settings = {
         pylsp = {
             plugins = {
-                flake8 = {
-                    enabled = false,
-                    ignore = { W292 },
-                    maxLineLength = 88
-                },
                 pycodestyle = {
-                   enabled = false,
+                   enabled = true,
                    maxLineLength = 88
                 },
-                pylint = { enabled = false, executable = "pylint" },
                 pyflakes = { enabled = true },
-                mypy = {enabled = true},
             },
         },
     }
 }
 
+-- Yaml
 lspconfig.yamlls.setup {
   on_attach = on_attach,
-  capabilities = capabilities,
   settings = {
     yaml = {
       schemas = {}

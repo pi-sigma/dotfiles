@@ -14,3 +14,14 @@ Section "InputClass"
         Option "XkbOptions"   "caps:swapescape"
 EndSection
 EOF
+
+# Create desktop entry for dwm
+cat << EOF >> /usr/share/xsessions/dwm.desktop
+[Desktop Entry]
+Encoding=UTF-8
+Name=Dwm
+Comment=Dynamic window manager
+Exec=/home/pi-sigma/.xsession
+Icon=dwm
+Type=XSession
+EOF

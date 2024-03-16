@@ -2,11 +2,19 @@
 __pycache__
 .idea
 .env
+dev/
 venv/
 *-main
 djtest.sh
 .mypy_cache/
 .nvim/
+.pyre/
+.pyre_configuration
+stubs/
+.watchmanconfig
+.vim-sessions/
+
+dev-local.txt
 
 # Config files
 mypy.ini
