@@ -29,8 +29,7 @@ vim.api.nvim_create_autocmd("FileType", {
     callback = function()
         set_shiftwidth_tabstop_stabstop(4)
 
-        -- syntax highlighting
-        vim.api.nvim_set_hl(0, "@function.call", { fg = "#ffd7af" })
+        vim.api.nvim_set_hl(0, "@function.call", { link = "GruvboxWhite" })
     end
 })
 
@@ -38,8 +37,9 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "dockerfile",
     callback = function()
-        vim.api.nvim_set_hl(0, "@function.call", { fg = "#ffd7af" })
         set_shiftwidth_tabstop_stabstop(4)
+
+        vim.api.nvim_set_hl(0, "@function.call", { link = "GruvboxWhite" })
     end
 })
 
@@ -58,9 +58,11 @@ vim.api.nvim_create_autocmd("FileType", {
     callback = function()
         set_shiftwidth_tabstop_stabstop(4)
 
-        -- syntax highlighting
-        vim.api.nvim_set_hl(0, "@punctuation.special", { fg = "#fe8019" })
-        vim.api.nvim_set_hl(0, "shDerefSimple", { fg = "#fe8019" })
+        -- vim.api.nvim_set_hl(0, "@punctuation.special", { fg = "#fe8019" })
+        -- vim.api.nvim_set_hl(0, "shDerefSimple", { fg = "#fe8019" })
+        vim.api.nvim_set_hl(0, "shCommandSub", { link = "GruvboxWhite" })
+        vim.api.nvim_set_hl(0, "shDerefLen", { link = "GruvboxWhite" })
+        vim.api.nvim_set_hl(0, "shDerefOffset", { link = "GruvboxWhite" })
     end
 })
 

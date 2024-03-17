@@ -18,10 +18,10 @@ end)()
 require("nvim-treesitter-textobjects")
 require("nvim-treesitter-playground")
 require("nvim-treesitter.configs").setup({
-    ensure_installed = { "bash", "c", "htmldjango", "javascript", "lua", "markdown", "python", "vim", "vimdoc" },
+    ensure_installed = { "css", "c", "htmldjango", "javascript", "lua", "markdown", "python", "vim", "vimdoc" },
     sync_install = false,
     auto_install = false,
-    ignore_install = {},
+    ignore_install = {"bash"},
     highlight = {
         enable = true,
         additional_vim_regex_highlighting = true,
@@ -37,6 +37,8 @@ require("nvim-treesitter.configs").setup({
                 ["if"] = "@function.inner",
                 ["ac"] = "@class.outer",
                 ["ic"] = "@class.inner",
+                ["al"] = "@loop.outer",
+                ["il"] = "@loop.inner",
             },
         },
         move = {
