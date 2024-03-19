@@ -51,3 +51,7 @@ vim.keymap.set('', '<C-v>', '"+p', {desc = "Paste after cursor from clipboard", 
 vim.keymap.set('', '<leader>Y', '"+y$', {desc = "Yank until EOL to clipboard", silent = true})
 vim.keymap.set("n", "<leader>0", '"+p', {desc = "Paste from 0 register", silent = true})
 vim.keymap.set("v", "<leader>0", '"+p', {desc = "Paste from 0 register", silent = true})
+
+-- quickfix list
+vim.keymap.set("n", "<leader>cn", ":cnext<CR>", {desc = "Goto next item on quckfix list", silent = true})
+vim.keymap.set("n", "<leader>cp", ":cprev<CR>", {desc = "Goto previous item on quckfix list", silent = true})
