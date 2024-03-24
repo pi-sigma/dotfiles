@@ -18,26 +18,31 @@ font:
   size: 10
 
 colors:
-    # primary:
-    #     background: "#282828"
-    #     foreground: "#d4be98"
-    # normal:
-    #     black: '#3c3836'
-    #     red: '#ea6962'
-    #     green: '#a9b665'
-    #     yellow: '#d8a657'
-    #     blue: '#7daea3'
-    #     magenta: '#d3869b'
-    #     cyan: '#89b482'
-    #     white: '#d4be98'
-    # bright:
-    #     black: "#3c3836"
-    #     red : "#ea6962"
-    #     green: "#a9b665"
-    #     yellow: "#d8a657"
-    #     blue: "#7daea3"
-    #     magenta: "#d3869b"
-    #     cyan: "#89b482"
-    #     white: "#d4be98"
+    search:
+      matches:
+        foreground: '#080808'
+        background: '#f6de30'
+      focused_match:
+        foreground: '#080808'
+        background: '#f74c11'
     cursor:
+        text: "#000000"
         cursor: "#ffd7af"
+    vi_mode_cursor:
+      text: "#080808"
+      cursor: "#f74c11"
+
+key_bindings:
+  - { key: "Return", mods: "Control|Shift", action: "SpawnNewInstance" }
+
+# https://alacritty.org/config-alacritty.html
+# custom: UUID
+hints:
+  enabled:
+    - regex:  "(ipfs:|ipns:|magnet:|mailto:|gemini://|gopher://|https://|http://|news:|file:|git://|ssh:|ftp://)[^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`]+|[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"
+      action: Copy
+      post_processing: false
+      binding:
+        key: U
+        mods: Control|Shift
+      hyperlinks: true
