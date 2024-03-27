@@ -13,7 +13,7 @@ end
 -- shiftwidth, tabstop, softtabstop
 vim.api.nvim_create_autocmd("FileType", {
     pattern = {
-        "css", "html", "htmldjango", "javascript", "json", "lua", "scss", "vim",
+        "css", "html", "gitconfig", "htmldjango", "javascript", "json", "lua", "scss", "vim",
     },
     callback = function()
         set_shiftwidth_tabstop_stabstop(4)
