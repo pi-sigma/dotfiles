@@ -52,6 +52,7 @@ alias djtest=". $HOME/.local/bin/djtest.sh"
 alias ipython="ipython --no-confirm-exit --quick --InteractiveShellApp.extensions=autoreload --InteractiveShellApp.exec_lines \%autoreload\ 2"
 alias plugnvim="$HOME/.local/bin/plugnvim.sh"
 alias vim=nvim
+alias xclipx="xclip -selection clipboard"
 
 # navigation
 alias ls="ls --color=auto"
