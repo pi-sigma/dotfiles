@@ -15,7 +15,6 @@ vim.opt.splitright = true
 -- smart search (sensitive for upper-case, non-sensitive for lower-case)
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
-
 vim.opt.incsearch = true
 vim.opt.swapfile = false
 vim.opt.expandtab = true        -- tabs > spaces
@@ -28,3 +27,6 @@ vim.opt.equalalways = true      -- resize windows
 
 -- statusline
 vim.opt.statusline = "%f %m%= %{&filetype?&filetype:&filetype}  %p%%  %l:%c "
+
+-- file search across directories
+vim.opt.path:append "**"

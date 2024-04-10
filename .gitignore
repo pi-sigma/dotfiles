@@ -1,33 +1,24 @@
 # Developer files
-__pycache__
-.idea
 .env
-dev/
-venv/
-*-main
-djtest.sh
-.mypy_cache/
-.nvim/
+.pre-commit-config.yaml
 .pyre/
 .pyre_configuration
-stubs/
-.watchmanconfig
 .vim-sessions/
-
-dev-local.txt
-
-# Config files
-mypy.ini
+dev_tools
+djtest.sh
+*-main
+private.txt
 setup.cfg
+test-cert.crt
+test-cert.key
+venv/
 
-# Other
+# Editor and program files
+.idea
+.mypy_cache/
+__pycache__
+.watchmanconfig
 /tags
 
 # files
 *.pdf
-
-#
-*/scratches/
-*scratch*
-code_snippets*
-dev_snippets*

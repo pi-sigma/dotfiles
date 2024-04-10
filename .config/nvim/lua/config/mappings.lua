@@ -10,15 +10,8 @@ vim.keymap.set("n", "Q", "<Nop>", {})
 -- nohlsearch
 vim.keymap.set("n", "<Esc><Esc>", ":let @/ = ''<CR>", opts)
 
--- half-page up/down
-vim.keymap.set("n", "J", "<C-d>", {})
-vim.keymap.set("n", "K", "<C-u>", {})
-
--- select word under cursor
-vim.keymap.set("n", "<A-w>", "viw", {})
-
 -- search word under cursor without moving cursor
-vim.keymap.set("n", "<C-D>", "*N", {})
+vim.keymap.set("n", "<A-w>", "*N", {})
 
 -- move lines
 vim.keymap.set("n", "<A-j>", ":m .+1<CR>==", opts)

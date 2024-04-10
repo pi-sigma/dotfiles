@@ -23,23 +23,30 @@ if [ -d ~/.dotfiles/bash/config ]; then
 fi
 unset rc
 
-# determine search program for fzf
-if type fd &> /dev/null; then
-	export FZF_DEFAULT_COMMAND='fd --type file --hidden --follow --no-ignore-vcs'
-	export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-fi
-
-# Load virtualenvwrapper
-[ -f ~/.local/bin/virtualenvwrapper.sh ] && source ~/.local/bin/virtualenvwrapper.sh
-
 # Terminal prompt
 YELLOW="\[\e[00;33m\]"
 RESET="\[\e[0m\]"
 
 PS1="$YELLOW\w$RESET \$ "
 
+# History
+HISTFILE="$HOME/.bash_history"
+HISTTIMEFORMAT="%T %y-%m-%d  "
+HISTSIZE=10000000
+HISTIGNORE=cd:ls:lsa:ll:history:clear:vim
+HISTCONTROL=ignorespace:erasedups
+
 # fzf
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.bash ] && source "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.bash
+
+# determine search program for fzf
+if type fd &> /dev/null; then
+	export FZF_DEFAULT_COMMAND='fd --type file --hidden --follow --no-ignore-vcs'
+	export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+fi
+
+# virtualenvwrapper
+[ -f ~/.local/bin/virtualenvwrapper.sh ] && source ~/.local/bin/virtualenvwrapper.sh
 
 # Require virtualenv for pip install
 export PIP_REQUIRE_VIRTUALENV=true
@@ -54,6 +61,10 @@ alias plugnvim="$HOME/.local/bin/plugnvim.sh"
 alias vim=nvim
 alias xclipx="xclip -selection clipboard"
 
+# git
+alias gs="git status"
+alias gdt="git diff-tree -r --name-only --no-commit-id $1"
+
 # navigation
 alias ls="ls --color=auto"
 alias lsl="ls -l --color=auto"
@@ -67,16 +78,11 @@ alias goto=". goto.sh"
 #
 # Functions
 #
-# Create a new directory and enter it
+# Create new directory and enter it
 function mk() {
   mkdir -p "$@" && cd "$@"
 }
 
-# Activate virtualenv and save the path as a tmux variable,
-# so that new panes/windows can re-activate as necessary
-function venv() {
-    workon $1 && tmux set-environment VIRTUAL_ENV $VIRTUAL_ENV
-}
 
 if [ -n "$VIRTUAL_ENV" ]; then
     source $VIRTUAL_ENV/bin/activate;
