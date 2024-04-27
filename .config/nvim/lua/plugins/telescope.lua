@@ -29,7 +29,7 @@ require("telescope").setup({
     },
     vim.keymap.set(
         "n",
-        "<leader>sF",
+        "<leader>FF",
         ":lua require('telescope.builtin').grep_string({search = vim.fn.expand('<cword>')})<cr>",
         {desc = "Grep word under cursor"}
     ),
