@@ -7,30 +7,25 @@ lsp_defaults.capabilities = vim.tbl_deep_extend(
     'force', lsp_defaults.capabilities, require('cmp_nvim_lsp').default_capabilities()
 )
 
-local on_attach = function(client, bufnr)
+
+local set_keymaps = function(client, bufnr)
     local bufopts = { noremap = true, silent = true, buffer = bufnr }
 
+    vim.keymap.set('n', '<leader>gD', vim.lsp.buf.declaration, bufopts)
+    vim.keymap.set('n', '<leader>gd', vim.lsp.buf.definition, bufopts)
+    vim.keymap.set('n', '<leader><space>', vim.lsp.buf.hover, bufopts)
+    vim.keymap.set('n', '<leader>gi', vim.lsp.buf.implementation, bufopts)
+    vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, bufopts)
+    vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
+end
+
+local on_attach = function(client, bufnr)
     -- disable syntax highlighting (conflicts with treesitter)
     client.server_capabilities.semanticTokensProvider = nil
 
-    vim.keymap.set('n', '<leader>gD', vim.lsp.buf.declaration, bufopts)
-    vim.keymap.set('n', '<leader>gd', vim.lsp.buf.definition, bufopts)
-    vim.keymap.set('n', '<leader><space>', vim.lsp.buf.hover, bufopts)
-    vim.keymap.set('n', '<leader>gi', vim.lsp.buf.implementation, bufopts)
-    vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, bufopts)
-    vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
+    set_keymaps(client, bufnr)
 end
 
-local on_attach_with_semantic_tokens = function(client, bufnr)
-    local bufopts = { noremap = true, silent = true, buffer = bufnr }
-
-    vim.keymap.set('n', '<leader>gD', vim.lsp.buf.declaration, bufopts)
-    vim.keymap.set('n', '<leader>gd', vim.lsp.buf.definition, bufopts)
-    vim.keymap.set('n', '<leader><space>', vim.lsp.buf.hover, bufopts)
-    vim.keymap.set('n', '<leader>gi', vim.lsp.buf.implementation, bufopts)
-    vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, bufopts)
-    vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
-end
 
 -- Bash
 lspconfig.bashls.setup {
@@ -64,7 +59,7 @@ lspconfig.html.setup {
 
 -- JavaScript/TypeScript
 lspconfig.tsserver.setup {
-    on_attach = on_attach_with_semantic_tokens,
+    on_attach = set_keymaps,
     flags = {
         debounce_text_changes = 150
     },

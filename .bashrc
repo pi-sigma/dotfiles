@@ -36,6 +36,15 @@ HISTSIZE=10000000
 HISTIGNORE=cd:ls:lsa:ll:history:clear:vim
 HISTCONTROL=ignorespace:erasedups
 
+
+# fasd
+fasd_cache="$HOME/.fasd-init-bash"
+if [ "$(command -v fasd)" -nt "$fasd_cache" -o ! -s "$fasd_cache" ]; then
+  fasd --init posix-alias bash-hook bash-ccomp bash-ccomp-install >| "$fasd_cache"
+fi
+source "$fasd_cache"
+unset fasd_cache
+
 # fzf
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.bash ] && source "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.bash
 
@@ -59,6 +68,8 @@ alias djtest=". $HOME/.local/bin/djtest.sh"
 alias ipython="ipython --no-confirm-exit --quick --InteractiveShellApp.extensions=autoreload --InteractiveShellApp.exec_lines \%autoreload\ 2"
 alias plugnvim="$HOME/.local/bin/plugnvim.sh"
 alias vim=nvim
+alias xdgo="xdg-open"
+alias dxdgo="devour xdg-open"
 alias xclipx="xclip -selection clipboard"
 
 # git
@@ -82,7 +93,6 @@ alias goto=". goto.sh"
 function mk() {
   mkdir -p "$@" && cd "$@"
 }
-
 
 if [ -n "$VIRTUAL_ENV" ]; then
     source $VIRTUAL_ENV/bin/activate;

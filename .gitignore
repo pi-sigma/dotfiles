@@ -12,6 +12,7 @@ setup.cfg
 test-cert.crt
 test-cert.key
 venv/
+docker-init-db.sql/*
 
 # Editor and program files
 .idea
