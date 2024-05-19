@@ -30,3 +30,6 @@ vim.opt.statusline = "%f %m%= %{&filetype?&filetype:&filetype}  %p%%  %l:%c "
 
 -- file search across directories
 vim.opt.path:append "**"
+
+-- extend session options to save tab names
+vim.cmd("set sessionoptions+=tabpages,globals")

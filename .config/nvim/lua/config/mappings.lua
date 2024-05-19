@@ -1,50 +1,58 @@
-local opts = { silent = true }
+local function map(mode, lhs, rhs, opts)
+    local options = {noremap = true, silent = true}
+
+    if opts then
+      options = vim.tbl_extend("force", options, opts)
+    end
+
+    vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+end
 
 vim.g.mapleader = ","
 
 -- save
-vim.keymap.set("n", "<leader>w", ":update<CR>", {})
+map("n", "<leader>w", ":update<CR>", {silent = false})
 
-vim.keymap.set("n", "Q", "<Nop>", {})
+map("n", "Q", "<Nop>")
 
 -- nohlsearch
-vim.keymap.set("n", "<Esc><Esc>", ":let @/ = ''<CR>", opts)
+map("n", "<Esc><Esc>", ":let @/ = ''<CR>")
 
 -- search word under cursor without moving cursor
-vim.keymap.set("n", "<A-w>", "*N", {})
+map("n", "<A-w>", "*N", {})
 
 -- move lines
-vim.keymap.set("n", "<A-j>", ":m .+1<CR>==", opts)
-vim.keymap.set("n", "<A-k>", ":m .-2<CR>==", opts)
-vim.keymap.set("i", "<A-j> <Esc>", ":m .+1<CR>==gi", opts)
-vim.keymap.set("i", "<A-K> <Esc>", ":m .-2<CR>==gi", opts)
-vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv", opts)
-vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv", opts)
+map("n", "<A-j>", ":m .+1<CR>==")
+map("n", "<A-k>", ":m .-2<CR>==")
+map("i", "<A-j> <Esc>", ":m .+1<CR>==gi")
+map("i", "<A-K> <Esc>", ":m .-2<CR>==gi")
+map("v", "<A-j>", ":m '>+1<CR>gv=gv")
+map("v", "<A-k>", ":m '<-2<CR>gv=gv")
 
 -- convert horizontal/vertical splits
-vim.keymap.set("n", "<leader>sh", ":windo wincmd K<CR>", opts)
-vim.keymap.set("n", "<leader>sv", ":windo wincmd H<CR>", opts)
+map("n", "<leader>sh", ":windo wincmd K<CR>")
+map("n", "<leader>sv", ":windo wincmd H<CR>")
 
 -- adjust split size
-vim.keymap.set("n", "<a-right>", ":vertical resize +3", opts)
-vim.keymap.set("n", "<a-left>", ":vertical resize -3", opts)
-vim.keymap.set("n", "<a-up>", ":resize -3", opts)
-vim.keymap.set("n", "<a-down>", ":resize +3", opts)
+map("n", "<a-right>", ":vertical resize +3")
+map("n", "<a-left>", ":vertical resize -3")
+map("n", "<a-up>", ":resize -3")
+map("n", "<a-down>", ":resize +3")
 
 -- split terminal (vertical, bottom)
-vim.keymap.set("n", "<leader>termv", ":vsplit<CR>:term<CR>", opts)
-vim.keymap.set("n", "<leader>termb", ":sp<bar>term<CR><C-W>j:resize15<CR>", opts)
+map("n", "<leader>termv", ":vsplit<CR>:term<CR>")
+map("n", "<leader>termb", ":sp<bar>term<CR><C-W>j:resize15<CR>")
 
 -- tabs
-vim.keymap.set("n", "<leader>tt", ":tabnew<CR>", opts)
+map("n", "<leader>tt", ":tabnew<CR>")
 
 -- yank/paste
-vim.keymap.set('', '<C-c>', '"+y', {desc = "Yank to clipboard", silent = true})
-vim.keymap.set('', '<C-v>', '"+p', {desc = "Paste after cursor from clipboard", silent = true})
-vim.keymap.set('', '<leader>Y', '"+y$', {desc = "Yank until EOL to clipboard", silent = true})
-vim.keymap.set("n", "<leader>0", '"+p', {desc = "Paste from 0 register", silent = true})
-vim.keymap.set("v", "<leader>0", '"+p', {desc = "Paste from 0 register", silent = true})
+map('', '<C-c>', '"+y', {desc = "Yank to clipboard"})
+map('', '<C-v>', '"+p', {desc = "Paste after cursor from clipboard"})
+map('', '<leader>Y', '"+y$', {desc = "Yank until EOL to clipboard"})
+map("n", "<leader>0", '"+p', {desc = "Paste from 0 register"})
+map("v", "<leader>0", '"+p', {desc = "Paste from 0 register"})
 
 -- quickfix list
-vim.keymap.set("n", "<leader>cn", ":cnext<CR>", {desc = "Goto next item on quckfix list", silent = true})
-vim.keymap.set("n", "<leader>cp", ":cprev<CR>", {desc = "Goto previous item on quckfix list", silent = true})
+map("n", "<leader>cn", ":cnext<CR>", {desc = "Goto next item on quckfix list"})
+map("n", "<leader>cp", ":cprev<CR>", {desc = "Goto previous item on quckfix list"})
