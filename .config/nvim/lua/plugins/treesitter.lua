@@ -18,7 +18,7 @@ end)()
 require("nvim-treesitter-textobjects")
 require("nvim-treesitter-playground")
 require("nvim-treesitter.configs").setup({
-    ensure_installed = { "css", "c", "htmldjango", "javascript", "lua", "markdown", "python", "vim", "vimdoc", "yaml" },
+    ensure_installed = { "c", "css", "htmldjango", "javascript", "lua", "markdown", "python", "vim", "vimdoc", "yaml" },
     sync_install = false,
     auto_install = false,
     ignore_install = {"bash"},

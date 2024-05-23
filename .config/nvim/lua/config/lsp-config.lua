@@ -1,7 +1,5 @@
 local lspconfig = require('lspconfig')
 local lsp_defaults = lspconfig.util.default_config
-local utils = require("utils")
-local overrides = utils.get_overrides()
 
 lsp_defaults.capabilities = vim.tbl_deep_extend(
     'force', lsp_defaults.capabilities, require('cmp_nvim_lsp').default_capabilities()
@@ -92,7 +90,7 @@ lspconfig.pylsp.setup {
             plugins = {
                 pycodestyle = {
                    enabled = true,
-                   maxLineLength = overrides.maxLineLength or 88,
+                   maxLineLength = 100,
                 },
                 pyflakes = { enabled = true },
             },

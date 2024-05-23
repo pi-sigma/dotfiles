@@ -1,4 +1,4 @@
-require 'luarocks.loader'
+require "luarocks.loader"
 
 local json = require("json")
 local M = {}
