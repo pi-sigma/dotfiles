@@ -1,16 +1,47 @@
 local actions = require("telescope.actions")
 local builtin = require("telescope.builtin")
+local map = require("utils").map
 
 require("plenary")
 
 require("telescope").setup({
     opts = {
-        vim.keymap.set("n", "<a-f>", builtin.find_files, {}),
-        vim.keymap.set("n", "<leader><a-f>", builtin.live_grep, {}),
-        vim.keymap.set("n", "<leader>rf", builtin.lsp_references, {}),
-        vim.keymap.set("n", "<leader>gg", builtin.lsp_implementations, {}),
-        vim.keymap.set("n", "<leader>gf", builtin.lsp_definitions, {}),
-        vim.keymap.set("n", "<leader>b", builtin.buffers, {}),
+        map("n", "<a-f>", builtin.find_files, {}),
+        map("n", "<leader><a-f>", builtin.live_grep, {}),
+        map("n", "<leader>rf", builtin.lsp_references, {}),
+        map("n", "<leader>gg", builtin.lsp_implementations, {}),
+        map("n", "<leader>gf", builtin.lsp_definitions, {}),
+        map("n", "<leader>b", builtin.buffers, {}),
+        map(
+            'n',
+            '<leader>dv',
+            ':lua require"telescope.builtin".lsp_definitions({jump_type="vsplit"})<CR>',
+            {desc = 'Go to definition, open in vertical split'}
+        ),
+        map(
+            'n',
+            '<leader>dh',
+            ':lua require"telescope.builtin".lsp_definitions({jump_type="split"})<CR>',
+            {desc = 'Go to definition, open in horizontal split'}
+        ),
+        map(
+            "n",
+            "<leader>FF",
+            ":lua require('telescope.builtin').grep_string({search = vim.fn.expand('<cword>')})<cr>",
+            {desc = "Grep word under cursor"}
+        ),
+        map(
+            "n",
+            "<leader>ff",
+            ":lua require('telescope.builtin').grep_string({ shorten_path = true, word_match = '-w', only_sort_text = true, search = '' })<cr>",
+            {desc = "Fuzzy find string"}
+        ),
+        map(
+            "n",
+            "<leader>S",
+            ":lua require('telescope.builtin').lsp_document_symbols({ symbols={'class', 'method', 'function'} })<CR>",
+            {desc = "List symbols (class, method, function)"}
+        ),
     },
     defaults = {
         file_ignore_patterns = {
@@ -27,22 +58,4 @@ require("telescope").setup({
             },
         },
     },
-    vim.keymap.set(
-        "n",
-        "<leader>FF",
-        ":lua require('telescope.builtin').grep_string({search = vim.fn.expand('<cword>')})<cr>",
-        {desc = "Grep word under cursor"}
-    ),
-    vim.keymap.set(
-        "n",
-        "<leader>ff",
-        ":lua require('telescope.builtin').grep_string({ shorten_path = true, word_match = '-w', only_sort_text = true, search = '' })<cr>",
-        {desc = "Fuzzy find string"}
-    ),
-    vim.keymap.set(
-        "n",
-        "<leader>S",
-        ":lua require('telescope.builtin').lsp_document_symbols({ symbols={'class', 'method', 'function'} })<CR>",
-        {desc = "List symbols (class, method, function)"}
-    ),
 })

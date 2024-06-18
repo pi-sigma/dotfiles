@@ -1,20 +1,19 @@
 local lspconfig = require('lspconfig')
 local lsp_defaults = lspconfig.util.default_config
+local map = require("utils").map
 
 lsp_defaults.capabilities = vim.tbl_deep_extend(
     'force', lsp_defaults.capabilities, require('cmp_nvim_lsp').default_capabilities()
 )
 
-
 local set_keymaps = function(client, bufnr)
-    local bufopts = { noremap = true, silent = true, buffer = bufnr }
+    local bufopts = { buffer = bufnr }
 
-    vim.keymap.set('n', '<leader>gD', vim.lsp.buf.declaration, bufopts)
-    vim.keymap.set('n', '<leader>gd', vim.lsp.buf.definition, bufopts)
-    vim.keymap.set('n', '<leader><space>', vim.lsp.buf.hover, bufopts)
-    vim.keymap.set('n', '<leader>gi', vim.lsp.buf.implementation, bufopts)
-    vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, bufopts)
-    vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
+    map('n', '<leader>gD', vim.lsp.buf.declaration, bufopts)
+    map('n', '<leader>gd', vim.lsp.buf.definition, bufopts)
+    map('n', '<leader><space>', vim.lsp.buf.hover, bufopts)
+    map('n', '<leader>gi', vim.lsp.buf.implementation, bufopts)
+    map('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
 end
 
 local on_attach = function(client, bufnr)
