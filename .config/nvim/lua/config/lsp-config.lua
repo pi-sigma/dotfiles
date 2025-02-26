@@ -48,6 +48,18 @@ lspconfig.cssls.setup {
     },
 }
 
+-- GO
+lspconfig.gopls.setup{
+  settings = {
+    gopls = {
+      analyses = {
+        unusedparams = true,
+      },
+      staticcheck = true,
+    },
+  },
+}
+
 -- HTML
 lspconfig.html.setup {
   on_attach = on_attach,
@@ -55,7 +67,7 @@ lspconfig.html.setup {
 }
 
 -- JavaScript/TypeScript
-lspconfig.tsserver.setup {
+lspconfig.ts_ls.setup {
     on_attach = set_keymaps,
     flags = {
         debounce_text_changes = 150

@@ -1,0 +1,52 @@
+[env]
+WINIT_X11_SCALE_FACTOR="1"
+
+[colors.cursor]
+cursor = "#ffd7af"
+text = "#000000"
+
+[colors.search.focused_match]
+background = "#f74c11"
+foreground = "#080808"
+
+[colors.search.matches]
+background = "#f6de30"
+foreground = "#080808"
+
+[colors.vi_mode_cursor]
+cursor = "#f74c11"
+text = "#080808"
+
+[font]
+size = 10
+
+[font.bold]
+family = "SourceCodePro"
+style = "Bold"
+
+[font.bold_italic]
+family = "SourceCodePro"
+style = "Bold Italic"
+
+[font.italic]
+family = "SourceCodePro"
+style = "Italic"
+
+[font.normal]
+family = "SourceCodePro"
+style = "Regular"
+
+[[hints.enabled]]
+action = "Copy"
+hyperlinks = true
+post_processing = false
+regex = "(ipfs:|ipns:|magnet:|mailto:|gemini://|gopher://|https://|http://|news:|file:|git://|ssh:|ftp://)[^\u0000-\u001F\u007F-<>\"\\s{-}\\^⟨⟩`]+|[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"
+
+[hints.enabled.binding]
+key = "U"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+action = "SpawnNewInstance"
+key = "Return"
+mods = "Control|Shift"
