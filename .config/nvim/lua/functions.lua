@@ -63,6 +63,20 @@ vim.cmd([[
     \ }))
 ]])
 
+-- copy path of current buffer to clipboard
+vim.api.nvim_create_user_command('CopyPath', function(opts)
+  local path
+  if opts.args == 'nameonly' then
+    path = vim.fn.expand('%:t')
+  elseif opts.args == 'relative' then
+    path = vim.fn.expand('%')
+  else
+    path = vim.fn.expand('%:p')
+  end
+  vim.fn.setreg('+', path)
+  print('Copied: ' .. path)
+end, {nargs = '?'})
+
 vim.cmd([[
     function s:follow_link()
         let $file = expand("<cword>") . ".md"

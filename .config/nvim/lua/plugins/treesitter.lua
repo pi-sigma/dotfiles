@@ -47,21 +47,21 @@ require("nvim-treesitter.configs").setup({
             -- jump forward
             goto_next_start = {
                 ["]f"] = "@function.outer",
-                ["]m"] = { query = "@class.outer", desc = "Next class start" },
+                ["]c"] = { query = "@class.outer", desc = "Next class start" },
                 ["]s"] = { query = "@scope", query_group = "locals", desc = "Next scope" },
                 ["]z"] = { query = "@fold", query_group = "folds", desc = "Next fold" },
             },
             goto_next_end = {
                 ["]F"] = "@function.outer",
-                ["]M"] = "@class.outer",
+                ["]C"] = "@class.outer",
             },
             goto_previous_start = {
                 ["[f"] = "@function.outer",
-                ["[m"] = "@class.outer",
+                ["[c"] = "@class.outer",
             },
             goto_previous_end = {
                 ["[F"] = "@function.outer",
-                ["[M"] = "@class.outer",
+                ["[C"] = "@class.outer",
             },
         },
         swap = {

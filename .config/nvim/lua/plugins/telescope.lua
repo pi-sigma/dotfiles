@@ -13,6 +13,30 @@ require("telescope").setup({
         map("n", "<leader>gf", builtin.lsp_definitions, {}),
         map("n", "<leader>b", builtin.buffers, {}),
         map(
+            "n",
+            "<leader>fw",
+            ":lua require('telescope.builtin').grep_string({search = vim.fn.expand('<cword>')})<cr>",
+            {desc = "Grep word under cursor"}
+        ),
+        map(
+            "n",
+            "<leader>ff",
+            ":lua require('telescope.builtin').grep_string({ shorten_path = true, word_match = '-w', only_sort_text = true, search = '' })<cr>",
+            {desc = "Fuzzy find string"}
+        ),
+        map(
+            "n",
+            "<leader>ff",
+            ":lua require'telescope.builtin'.grep_string()<CR>",
+            {desc = "Go to definition, open in vertical split"}
+        ),
+        map(
+            "n",
+            "<leader>fr",
+            ":Telescope resume<CR>",
+            {desc = "Resume previous search"}
+        ),
+        map(
             'n',
             '<leader>dv',
             ':lua require"telescope.builtin".lsp_definitions({jump_type="vsplit"})<CR>',
@@ -23,18 +47,6 @@ require("telescope").setup({
             '<leader>dh',
             ':lua require"telescope.builtin".lsp_definitions({jump_type="split"})<CR>',
             {desc = 'Go to definition, open in horizontal split'}
-        ),
-        map(
-            "n",
-            "<leader>FF",
-            ":lua require('telescope.builtin').grep_string({search = vim.fn.expand('<cword>')})<cr>",
-            {desc = "Grep word under cursor"}
-        ),
-        map(
-            "n",
-            "<leader>ff",
-            ":lua require('telescope.builtin').grep_string({ shorten_path = true, word_match = '-w', only_sort_text = true, search = '' })<cr>",
-            {desc = "Fuzzy find string"}
         ),
         map(
             "n",

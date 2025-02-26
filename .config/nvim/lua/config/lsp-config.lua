@@ -55,7 +55,7 @@ lspconfig.html.setup {
 }
 
 -- JavaScript/TypeScript
-lspconfig.tsserver.setup {
+lspconfig.ts_ls.setup {
     on_attach = set_keymaps,
     flags = {
         debounce_text_changes = 150

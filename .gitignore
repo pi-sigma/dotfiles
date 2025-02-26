@@ -6,13 +6,16 @@
 .vim-sessions/
 dev_tools
 djtest.sh
+Dockerfile.debug
+docker-compose.debug.*
+docker-init-db.sql/*
 *-main
 private.txt
 setup.cfg
 test-cert.crt
 test-cert.key
 venv/
-docker-init-db.sql/*
+*.orig
 
 # Editor and program files
 .idea
@@ -21,4 +24,5 @@ __pycache__
 .watchmanconfig
 /tags
 
-# files
+# misc.
+history.sqlite
