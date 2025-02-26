@@ -10,7 +10,8 @@ if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
 then
     PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 fi
-export PATH
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
 
 # Uncomment the following line if you don't like systemctl's auto-paging feature:
 # export SYSTEMD_PAGER=
@@ -23,10 +24,14 @@ if [ -d ~/.dotfiles/bash/config ]; then
 fi
 unset rc
 
+# start ssh-agent if it's not running
+# if [ -z "$SSH_AGENT_PID" ]; then
+#     eval $(ssh-agent -s) > /dev/null 2>&1
+# fi
+
 # Terminal prompt
 YELLOW="\[\e[00;33m\]"
 RESET="\[\e[0m\]"
-
 PS1="$YELLOW\w$RESET \$ "
 
 # History
@@ -35,7 +40,6 @@ HISTTIMEFORMAT="%T %y-%m-%d  "
 HISTSIZE=10000000
 HISTIGNORE=cd:ls:lsa:ll:history:clear:vim
 HISTCONTROL=ignorespace:erasedups
-
 
 # fasd
 fasd_cache="$HOME/.fasd-init-bash"
@@ -54,11 +58,7 @@ if type fd &> /dev/null; then
 	export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 fi
 
-# virtualenvwrapper
-[ -f ~/.local/bin/virtualenvwrapper.sh ] && source ~/.local/bin/virtualenvwrapper.sh
-
 # Require virtualenv for pip install
-export PIP_REQUIRE_VIRTUALENV=true
 
 #
 # Aliases
@@ -69,7 +69,7 @@ alias ipython="ipython --no-confirm-exit --quick --InteractiveShellApp.extension
 alias plugnvim="$HOME/.local/bin/plugnvim.sh"
 alias vim=nvim
 alias xdgo="xdg-open"
-alias dxdgo="devour xdg-open"
+alias xdgo="devour xdg-open"
 alias xclipx="xclip -selection clipboard"
 
 # git
@@ -77,6 +77,7 @@ alias gs="git status"
 alias gdt="git diff-tree -r --name-only --no-commit-id $1"
 
 # navigation
+alias x="xdg-open"
 alias ls="ls --color=auto"
 alias lsl="ls -l --color=auto"
 alias lsa="ls -a --color=auto"
@@ -94,7 +95,19 @@ function mk() {
   mkdir -p "$@" && cd "$@"
 }
 
+# virtualenvwrapper
+function load-virtualenvwrapper {
+    [ -f ~/.local/bin/virtualenvwrapper.sh ] && source ~/.local/bin/virtualenvwrapper.sh
+
+    # activate virtualenv if argument provided
+    [ -n "$1" ] && workon $1
+}
 if [ -n "$VIRTUAL_ENV" ]; then
     source $VIRTUAL_ENV/bin/activate;
     source $HOME/.virtualenvs/postactivate;
 fi
+
+export PYTHONBREAKPOINT=pdbr.set_trace
+
+# Turn off system beep
+xset b off

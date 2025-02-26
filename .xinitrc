@@ -2,6 +2,6 @@
 
 dwmstatus 2>&1 >/dev/null &
 
-picom &
+picom --backend xrender &
 
 exec /usr/local/bin/dwm
