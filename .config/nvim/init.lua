@@ -15,7 +15,6 @@ require("plugins.nvim-dap")
 require("plugins.taboo")
 require("plugins.telescope")
 require("plugins.treesitter")
-require("plugins.vim-slime")
 require("plugins.vim-surround")
 
 require("autocommands.filetype")

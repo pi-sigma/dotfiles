@@ -6,8 +6,8 @@
 .vim-sessions/
 dev-tools
 djtest.sh
-Dockerfile.debug
-docker-compose.debug.*
+Dockerfile.dev
+docker-compose.dev.*
 docker-init-db.sql/*
 *-main
 private.txt
