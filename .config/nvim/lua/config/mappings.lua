@@ -56,6 +56,8 @@ map('', '<leader>Y', '"+y$', {desc = "Yank until EOL to clipboard"})
 map("n", "<leader>0", '"+p', {desc = "Paste from 0 register"})
 map("v", "<leader>0", '"+p', {desc = "Paste from 0 register"})
 
--- quickfix list
+-- quickfix list navigation
 map("n", "<leader>cn", ":cnext<CR>", {desc = "Goto next item on quckfix list"})
 map("n", "<leader>cp", ":cprev<CR>", {desc = "Goto previous item on quckfix list"})
+
+vim.cmd("iab breakp import pdbr;pdbr.set_trace()")

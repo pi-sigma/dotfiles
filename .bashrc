@@ -10,8 +10,8 @@ if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
 then
     PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 fi
-export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:$HOME/go/bin
+export PATH=$PATH:$HOME/.cargo/bin
 
 # Uncomment the following line if you don't like systemctl's auto-paging feature:
 # export SYSTEMD_PAGER=
@@ -24,11 +24,6 @@ if [ -d ~/.dotfiles/bash/config ]; then
 fi
 unset rc
 
-# start ssh-agent if it's not running
-# if [ -z "$SSH_AGENT_PID" ]; then
-#     eval $(ssh-agent -s) > /dev/null 2>&1
-# fi
-
 # Terminal prompt
 YELLOW="\[\e[00;33m\]"
 RESET="\[\e[0m\]"
@@ -40,6 +35,8 @@ HISTTIMEFORMAT="%T %y-%m-%d  "
 HISTSIZE=10000000
 HISTIGNORE=cd:ls:lsa:ll:history:clear:vim
 HISTCONTROL=ignorespace:erasedups
+
+export PYTHONBREAKPOINT=pdbr.set_trace
 
 # fasd
 fasd_cache="$HOME/.fasd-init-bash"
@@ -58,7 +55,6 @@ if type fd &> /dev/null; then
 	export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 fi
 
-# Require virtualenv for pip install
 
 #
 # Aliases
@@ -71,6 +67,7 @@ alias vim=nvim
 alias xdgo="xdg-open"
 alias xdgo="devour xdg-open"
 alias xclipx="xclip -selection clipboard"
+alias zotero="devour ~/.local/etc/zotero/zotero"
 
 # git
 alias gs="git status"
@@ -107,7 +104,6 @@ if [ -n "$VIRTUAL_ENV" ]; then
     source $HOME/.virtualenvs/postactivate;
 fi
 
-export PYTHONBREAKPOINT=pdb.set_trace
 
 # Turn off system beep
 xset b off

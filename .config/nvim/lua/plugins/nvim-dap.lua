@@ -1,4 +1,4 @@
-local dap = require('dap')
+local dap = require("dap")
 local dap_python = require('dap-python')
 
 dap_python.setup('python')
@@ -15,7 +15,7 @@ dap.configurations.python = {
     pathMappings = {
       {
         localRoot = vim.fn.getcwd(),
-        remoteRoot = '/app',  -- Adjust this to match your container's app directory
+        remoteRoot = '/app',  -- container app directory
       },
     },
   },
