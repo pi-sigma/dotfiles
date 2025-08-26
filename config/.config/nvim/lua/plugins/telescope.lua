@@ -1,3 +1,4 @@
+local telescope = require("telescope")
 local actions = require("telescope.actions")
 local builtin = require("telescope.builtin")
 local map = require("utils").map
@@ -69,5 +70,5 @@ require("telescope").setup({
                 ["<leader>q"] = actions.close,
             },
         },
-    },
+    }
 })

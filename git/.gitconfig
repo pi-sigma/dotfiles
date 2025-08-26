@@ -4,7 +4,7 @@
     email = mail@paulschilling.de
 [core]
     excludesfile = ~/.gitignore
-    editor = nvim
+	editor = nano
 [diff]
     tool = meld
 [difftool]
