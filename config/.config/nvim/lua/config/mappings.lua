@@ -50,14 +50,23 @@ map("n", "<leader>8", "8gt")
 map("n", "<leader>9", "9gt")
 
 -- yank/paste
-map('', '<C-c>', '"+y', {desc = "Yank to clipboard"})
+map('v', '<C-c>', '"+y', {desc = "Yank to clipboard"})
 map('', '<C-v>', '"+p', {desc = "Paste after cursor from clipboard"})
 map('', '<leader>Y', '"+y$', {desc = "Yank until EOL to clipboard"})
 map("n", "<leader>0", '"+p', {desc = "Paste from 0 register"})
 map("v", "<leader>0", '"+p', {desc = "Paste from 0 register"})
+map("i", "<C-r>", "<C-r>+")
+
 
 -- quickfix list navigation
 map("n", "<leader>cn", ":cnext<CR>", {desc = "Goto next item on quckfix list"})
 map("n", "<leader>cp", ":cprev<CR>", {desc = "Goto previous item on quckfix list"})
 
 vim.cmd("iab breakp import pdbr;pdbr.set_trace()")
+
+-- center cursor when moving up/down
+-- (only for keyboard; mouse movement works w/o centering)
+map("n", "<C-u>", "<C-u>zz", { noremap = true, silent = true })
+map("n", "<C-d>", "<C-d>zz", { noremap = true, silent = true })
+map("n", "j", "jzz", { noremap = true })
+map("n", "k", "kzz", { noremap = true })

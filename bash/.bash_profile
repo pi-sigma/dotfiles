@@ -10,4 +10,4 @@ if [ -z "$SSH_AGENT_PID" ]; then
 fi
 
 #ssh-add ~/.ssh/id_personal
-eval $(keychain --eval --agents ssh ~/.ssh/id_personal)
+eval $(keychain --eval --agents ssh ~/.ssh/work)
