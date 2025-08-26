@@ -50,14 +50,40 @@ map("n", "<leader>8", "8gt")
 map("n", "<leader>9", "9gt")
 
 -- yank/paste
-map('', '<C-c>', '"+y', {desc = "Yank to clipboard"})
+map('v', '<C-c>', '"+y', {desc = "Yank to clipboard"})
 map('', '<C-v>', '"+p', {desc = "Paste after cursor from clipboard"})
 map('', '<leader>Y', '"+y$', {desc = "Yank until EOL to clipboard"})
 map("n", "<leader>0", '"+p', {desc = "Paste from 0 register"})
 map("v", "<leader>0", '"+p', {desc = "Paste from 0 register"})
+map("i", "<C-r>", "<C-r>+")
+
 
 -- quickfix list navigation
 map("n", "<leader>cn", ":cnext<CR>", {desc = "Goto next item on quckfix list"})
 map("n", "<leader>cp", ":cprev<CR>", {desc = "Goto previous item on quckfix list"})
 
 vim.cmd("iab breakp import pdbr;pdbr.set_trace()")
+
+-- Track the last and current tabs for toggling
+local last_tab = nil
+local current_tab = vim.fn.tabpagenr()
+
+-- Update when you leave or enter a tab
+vim.api.nvim_create_autocmd({ "TabLeave", "TabEnter" }, {
+  callback = function()
+    local new_tab = vim.fn.tabpagenr()
+    if new_tab ~= current_tab then
+      last_tab = current_tab
+      current_tab = new_tab
+    end
+  end,
+})
+
+vim.keymap.set("n", "<leader><Tab>", function()
+  if last_tab and vim.fn.tabpagenr() ~= last_tab then
+    vim.cmd("tabnext " .. last_tab)
+  else
+    vim.notify("No previous tab to toggle to", vim.log.levels.INFO)
+  end
+end, { desc = "Toggle between last two tabs" })
+

@@ -17,6 +17,7 @@ test-cert.key
 venv/
 *.orig
 *.vim
+venv
 
 # Editor and program files
 .idea
@@ -24,6 +25,10 @@ venv/
 __pycache__
 .watchmanconfig
 /tags
+opencodetmp/
+AGENTS.md
 
 # misc.
 history.sqlite
+
+django-prosemirror
