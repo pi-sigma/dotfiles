@@ -11,7 +11,7 @@ end
 -- settings for various file types
 vim.api.nvim_create_autocmd("FileType", {
     pattern = {
-        "css", "go", "html", "gitconfig", "htmldjango", "javascript", "json", "lua", "scss", "vim",
+        "css", "go", "html", "gitconfig", "htmldjango", "java", "javascript", "json", "lua", "scss", "tex", "vim",
     },
     callback = function()
         set_shiftwidth_tabstop_stabstop(4)

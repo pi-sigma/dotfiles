@@ -10,8 +10,10 @@ if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
 then
     PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 fi
-export PATH=$PATH:$HOME/go/bin
-export PATH=$PATH:$HOME/.cargo/bin
+export PATH="$PATH:$HOME/go/bin:$HOME/.cargo/bin/"
+export PATH="$HOME/.opencode/bin:$PATH"
+export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
+
 
 # Uncomment the following line if you don't like systemctl's auto-paging feature:
 # export SYSTEMD_PAGER=
@@ -24,10 +26,15 @@ if [ -d ~/.dotfiles/bash/config ]; then
 fi
 unset rc
 
+export EDITOR=/usr/local/bin/nvim
+
 # Terminal prompt
 YELLOW="\[\e[00;33m\]"
 RESET="\[\e[0m\]"
 PS1="$YELLOW\w$RESET \$ "
+
+# Turn off system beep
+xset b off
 
 # History
 HISTFILE="$HOME/.bash_history"
@@ -60,21 +67,20 @@ fi
 # Aliases
 #
 # applications & scripts
-alias djtest=". $HOME/.local/bin/djtest.sh"
+alias djtest=". /usr/local//bin/djtest.sh"
 alias ipython="ipython --no-confirm-exit --quick --InteractiveShellApp.extensions=autoreload --InteractiveShellApp.exec_lines \%autoreload\ 2"
 alias plugnvim="$HOME/.local/bin/plugnvim.sh"
 alias vim=nvim
-alias xdgo="xdg-open"
 alias xdgo="devour xdg-open"
 alias xclipx="xclip -selection clipboard"
-alias zotero="devour ~/.local/etc/zotero/zotero"
+alias zotero="devour zotero"
+alias screenshot="$HOME/.dotfiles//scripts/screenshot.sh"
 
 # git
 alias gs="git status"
 alias gdt="git diff-tree -r --name-only --no-commit-id $1"
 
 # navigation
-alias x="xdg-open"
 alias ls="ls --color=auto"
 alias lsl="ls -l --color=auto"
 alias lsa="ls -a --color=auto"
@@ -82,7 +88,6 @@ alias lsal="ls -al --color=auto"
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
-alias goto=". goto.sh"
 
 #
 # Functions
@@ -93,17 +98,13 @@ function mk() {
 }
 
 # virtualenvwrapper
-function load-virtualenvwrapper {
-    [ -f ~/.local/bin/virtualenvwrapper.sh ] && source ~/.local/bin/virtualenvwrapper.sh
+function venv {
+    source "/usr/local/bin/virtualenvwrapper.sh"
 
     # activate virtualenv if argument provided
     [ -n "$1" ] && workon $1
 }
-if [ -n "$VIRTUAL_ENV" ]; then
-    source $VIRTUAL_ENV/bin/activate;
-    source $HOME/.virtualenvs/postactivate;
-fi
 
-
-# Turn off system beep
-xset b off
+function set-window-title {
+    echo -ne "\033]0;$1\007"
+}

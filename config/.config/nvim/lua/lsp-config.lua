@@ -66,8 +66,11 @@ lspconfig.html.setup {
   filetypes = { 'html', 'htmldjango' }
 }
 
+-- Java
+lspconfig.jdtls.setup({})
+
 -- JavaScript/TypeScript
-lspconfig.ts_ls.setup {
+lspconfig.tsserver.setup {
     on_attach = set_keymaps,
     flags = {
         debounce_text_changes = 150

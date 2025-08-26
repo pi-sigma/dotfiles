@@ -2,6 +2,8 @@
 
 dwmstatus 2>&1 >/dev/null &
 
-picom --backend xrender &
+setxkbmap -option compose:ralt &
+
+picom --backend xrender --vsync &
 
 exec /usr/local/bin/dwm
